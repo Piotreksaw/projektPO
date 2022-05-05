@@ -7,7 +7,7 @@ from reportlab.pdfgen.canvas import Canvas
 class PdfReportGenerator:
 
     def __init__(self):
-        self.__author = "Nobody"
+        self.__author = "Piotr"
         self.__title = f"Sin(x) report ({date.today()})"
 
     def create_and_save_report(self, img, filepath, pagesize=A4):
