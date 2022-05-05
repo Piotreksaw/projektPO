@@ -1,1 +1,0 @@
-print("dzięki nie działa")
