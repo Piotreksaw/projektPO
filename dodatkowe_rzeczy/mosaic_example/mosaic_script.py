@@ -185,11 +185,11 @@ class Mosaic(QMainWindow):
         self.show()
 
     def __init_default_value(self):
-        self.__btn_size = 150
-        self.__rows = 3
-        self.__cols = 3
+        self.__btn_size = 125
+        self.__rows = 5
+        self.__cols = 5
 
-        self.__padding_x = 200
+        self.__padding_x = 600
         self.__padding_y = 200
 
         self.__width = self.__cols * self.__btn_size
