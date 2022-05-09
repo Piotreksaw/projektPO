@@ -2,3 +2,4 @@
 print("Hello")
 print("to jest kolejna poprawka")
 #to jest poprawa jeszcze raz
+#zmiany zmiany zmiany
