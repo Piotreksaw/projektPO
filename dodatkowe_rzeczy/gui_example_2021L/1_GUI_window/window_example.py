@@ -7,8 +7,9 @@ class EmptyView(QWidget):
     def __init__(self):
         super().__init__()
         width, height = 250, 150
+        name = "nazwa"
         self.resize(width, height)
-        self.setWindowTitle("Empty window")
+        self.setWindowTitle(name)
         self.show()
 
 
