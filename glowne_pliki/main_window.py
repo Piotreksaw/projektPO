@@ -8,6 +8,7 @@ class MainWindow(QWidget):
         width = 500
         height = 300
         name = "program"
+        name2 = "hej"
         self.resize(width, height)
         self.setWindowTitle(name)
         self.__prepare_window()
