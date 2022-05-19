@@ -41,11 +41,11 @@ class Country:
 
     def get_country_value_from_date(self, date):
         self.__date = date
-        return self.__data.iloc[self.__list_of_countries.index(self.__name_of_country) + 3, self.__list_of_dates.index(
-            self.__date) + 1]
+        print(self.__data.iloc[self.__list_of_countries.index(self.__name_of_country) + 3, self.__list_of_dates.index(
+            self.__date) + 1])
 
 
 if __name__ == "__main__":
-    test = FileReader("eurostat.csv")
+    test = FileReader("Eurostat.csv")
     poland = Country("Poland", test)
     poland.get_country_value_from_date("2019-S1")
