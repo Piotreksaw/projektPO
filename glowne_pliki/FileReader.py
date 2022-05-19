@@ -46,6 +46,6 @@ class Country:
 
 
 if __name__ == "__main__":
-    test = FileReader("Eurostat.csv")
+    test = FileReader("eurostat.csv")
     poland = Country("Poland", test)
     poland.get_country_value_from_date("2019-S1")
