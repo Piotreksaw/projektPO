@@ -70,3 +70,10 @@ if __name__ == "__main__":
     test = FileReader("eurostat.csv")
     poland = Country("Poland", test)
     poland.get_country_value_from_date("2009-S1")
+
+    print(test.get_dates()[4])
+    for a in range(0, len(test.get_countries())):
+        country = Country(test.get_countries()[a], test)
+        date = country.get_country_value_from_date(test.get_dates()[4])
+        print((test.get_countries()[a], date))
+
