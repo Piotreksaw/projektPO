@@ -48,4 +48,4 @@ class Country:
 if __name__ == "__main__":
     test = FileReader("eurostat.csv")
     poland = Country("Poland", test)
-    poland.get_country_value_from_date("2010-S1")
+    poland.get_country_value_from_date("2009-S1")
