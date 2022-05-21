@@ -9,7 +9,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 from Charts.chart import create_Chart
 # from Charts.chart import create_Chart
-from FileReader import Country
+from FileReader import Country, FileReader
 
 # class RandFuncButton(QPushButton):
 #
@@ -102,5 +102,19 @@ class ButtonsPanel(QGroupBox):
         self.__buttons = []
 
     def __prepare_buttons_grid(self):
-        # self.
-        pass
+        list_of_countries = FileReader("eurostat.csv")
+        layout = QVBoxLayout()
+
+        for btn in self.__buttons:
+            layout.addWidget(btn)
+
+        self.setLayout(layout)
+
+    def __create_button(self):
+        num_of_buttons = 27
+
+    def __find_rand_color(self):
+        color_id = random.randint(0, len(self.__COLORS) - 1)
+        color = self.__COLORS[color_id]
+
+        return color
