@@ -21,16 +21,14 @@ class MainWindow(QWidget):
         self.__prepare_window()
 
     def __prepare_window(self):
-        self.__buttons1 = Tabs()
+        self.__tabs = Tabs()
         self.__buttons2 = Export_and_something_buttons()
-        # self.__map = Map
-        # self.__chart =
-        # self.__list = LisCt
-        self.__button_panel = ButtonsPanel()
+        __button_panel = ButtonsPanel()
 
         main_layout = QGridLayout()
-        main_layout.addWidget(self.__buttons1, 0, 0)
+        main_layout.addWidget(self.__tabs, 0, 0)
         main_layout.addWidget(self.__buttons2, 1, 0)
+        main_layout.addWidget(__button_panel, 0, 1, 2, 5)
         # main_layout.addWidget(self.__list, 2, 2)
 
         self.setLayout(main_layout)
