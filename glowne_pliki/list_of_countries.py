@@ -35,14 +35,21 @@ class ButtonsPanel(QGroupBox):
     def __init__(self):
         super().__init__()
         self.__buttons = []
+        self.__prepare_buttons_grid()
+
+    def __get_list(self):
+        list_of = FileReader("eurostat.csv").getCountries()
+
+        return list_of
 
     def __get_num_of_countries(self):
-        list_of = FileReader("eurostat.csv").getCountries()
+        list_of = self.__get_list()
         num_of_countires = len(list_of)
+        print(num_of_countires)
         return num_of_countires
 
     def __prepare_buttons_grid(self):
-        # list_of_countries = FileReader("eurostat.csv").getCountries()
+        self.__create_button()
         layout = QVBoxLayout()
 
         for btn in self.__buttons:
@@ -56,7 +63,7 @@ class ButtonsPanel(QGroupBox):
         for i in range(num_of_buttons):
             colour = self.__find_rand_color()
 
-            btn = AddingButton(str(i), colour)
+            btn = AddingButton(self.__get_list()[i], colour)
             self.__buttons.append(btn)
 
 

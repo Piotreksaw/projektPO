@@ -28,16 +28,18 @@ class MainWindow(QWidget):
         main_layout = QGridLayout()
         main_layout.addWidget(self.__tabs, 0, 0)
         main_layout.addWidget(self.__buttons2, 1, 0)
-        main_layout.addWidget(__button_panel, 0, 1, 2, 5)
+        main_layout.addWidget(__button_panel, 0, 1, 2, 2)
         # main_layout.addWidget(self.__list, 2, 2)
 
         self.setLayout(main_layout)
         self.show()
 
-
-
-if __name__ == "__main__":
+def main():
     app = QApplication([])
     main_window = MainWindow()
 
     sys.exit(app.exec_())
+
+
+if __name__ == "__main__":
+   main()
