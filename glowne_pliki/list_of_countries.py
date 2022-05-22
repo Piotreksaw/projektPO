@@ -16,6 +16,12 @@ class AddingButton(QPushButton):
     def  __init__(self, btn_name, color):
         super().__init__(btn_name)
         self.__color = color
+
+        self.clicked.connect(self.__update_chart)
+
+    def __update_chart(self):
+        name = self.text()
+
         self.__create_and_add_icon_to_btn()
 
     def __create_and_add_icon_to_btn(self, width = 30, height =10):
