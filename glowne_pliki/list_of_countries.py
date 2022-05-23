@@ -24,7 +24,7 @@ class AddingButton(QPushButton):
 
         self.__create_and_add_icon_to_btn()
 
-    def __create_and_add_icon_to_btn(self, width = 30, height =10):
+    def __create_and_add_icon_to_btn(self, width = 40, height =5):
         shape = ((0,0 ), (width - 1, height -1))
         rectangle = Image.new("RGBA", (width, height))
         rectangle_img = ImageDraw.Draw(rectangle)

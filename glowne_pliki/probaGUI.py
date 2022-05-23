@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QLi
 from PyQt5 import QtCore
 
 
+
 class create_button(QPushButton):
     def __init__(self, word, text_panel: QLineEdit):
         super().__init__(word)
