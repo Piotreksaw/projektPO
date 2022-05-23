@@ -11,8 +11,8 @@ from list_of_countries import ButtonsPanel
 class MainWindow(QWidget):
     def __init__(self):
         super(MainWindow, self).__init__()
-        width = 500
-        height = 300
+        width = 800
+        height = 500
         name = "program"
 
         self.resize(width, height)
@@ -26,9 +26,9 @@ class MainWindow(QWidget):
         __button_panel = ButtonsPanel()
 
         main_layout = QGridLayout()
-        main_layout.addWidget(self.__tabs, 0, 0)
-        main_layout.addWidget(self.__buttons2, 1, 0)
-        main_layout.addWidget(__button_panel, 0, 1, 2, 2)
+        main_layout.addWidget(self.__tabs, 0, 0, 1, 1)
+        main_layout.addWidget(self.__buttons2, 1, 0, 1, 1)
+        main_layout.addWidget(__button_panel, 0, 1, 2, 3)
         # main_layout.addWidget(self.__list, 2, 2)
 
         self.setLayout(main_layout)
