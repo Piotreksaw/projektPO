@@ -5,8 +5,10 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 from PyQt5.QtGui import QIcon, QPixmap
 
+from projektPO.glowne_pliki.FileReader import FileReader, Country
 
-class create_Chart(FigureCanvasQTAgg):
+
+class CreateChart(FigureCanvasQTAgg):
     def __init__(self, width = 5, height = 5, dpi = 100):
         self.__fig = Figure(figsize=(width, height), dpi= dpi)
         super().__init__(self.__fig)
@@ -26,3 +28,4 @@ class create_Chart(FigureCanvasQTAgg):
         self.__axes.plot(xx, yy, color, label= name)
         self.__axes.legend()
         self.draw()
+
