@@ -7,12 +7,11 @@ from tabs import Tabs
 from list_of_countries import ButtonsPanel
 
 
-
 class MainWindow(QWidget):
     def __init__(self):
         super(MainWindow, self).__init__()
-        width = 800
-        height = 500
+        width = 1500
+        height = 720
         name = "program"
 
         self.resize(width, height)
@@ -23,16 +22,17 @@ class MainWindow(QWidget):
     def __prepare_window(self):
         self.__tabs = Tabs()
         self.__buttons2 = Export_and_something_buttons()
-        __button_panel = ButtonsPanel()
+        self.__button_panel = ButtonsPanel()
 
         main_layout = QGridLayout()
-        main_layout.addWidget(self.__tabs, 0, 0, 1, 1)
-        main_layout.addWidget(self.__buttons2, 1, 0, 1, 1)
-        main_layout.addWidget(__button_panel, 0, 1, 2, 3)
-        # main_layout.addWidget(self.__list, 2, 2)
+        main_layout.addWidget(self.__tabs, 0, 0, 1, 8)
+        main_layout.addWidget(self.__buttons2, 1, 0, 1, 8 )
+        main_layout.addWidget(self.__button_panel, 0, 8, 2, 2 )
+
 
         self.setLayout(main_layout)
         self.show()
+
 
 def main():
     app = QApplication([])
