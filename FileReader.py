@@ -48,6 +48,14 @@ class Country:
         self.__list_of_countries = data.get_countries()
         self.__list_of_dates = data.get_dates()
 
+
+    # Funkcja zwracająca listę wszystkich wartosci dla danego panstwa
+    def get_all_values_for_country(self):
+        country_num = self.__give_country_num()
+        values_for_country = list(self.__data.iloc[country_num])
+        values_for_country = values_for_country[1:]
+        return values_for_country
+
     # Funkcja zwracajaca wartosci dla danego panstwa i danego okresu
     def get_country_value_from_date(self, date):
         country_num = self.__give_country_num()
@@ -70,6 +78,7 @@ if __name__ == "__main__":
     test = FileReader("eurostat.csv")
     poland = Country("Poland", test)
     poland.get_country_value_from_date("2009-S1")
+    print(poland.get_all_values_for_country())
 
     print(test.get_dates()[4])
     for a in range(0, len(test.get_countries())):
