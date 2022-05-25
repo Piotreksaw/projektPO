@@ -22,7 +22,7 @@ class MainWindow(QWidget):
     def __prepare_window(self):
         self.__tabs = Tabs()
         self.__buttons2 = Export_and_something_buttons()
-        self.__button_panel = ButtonsPanel()
+        self.__button_panel = ButtonsPanel(Tabs().tab1)
 
         main_layout = QGridLayout()
         main_layout.addWidget(self.__tabs, 0, 0, 1, 8)

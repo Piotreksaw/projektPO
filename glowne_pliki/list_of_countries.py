@@ -12,11 +12,12 @@ from FileReader import Country, FileReader
 
 
 class AddingButton(QPushButton):
-    def  __init__(self, counrty, color):
-        super().__init__(counrty)
+    def  __init__(self, btn_name, date, price, chart_panel, color):
+        super().__init__(btn_name)
         self.__color = color
-
-        # self.__chart_panel = chart_panel
+        self.__date = date
+        self.__price = price
+        self.__chart_panel = chart_panel
         self.__status = 0
         self.clicked.connect(self.__update_chart)
 
@@ -30,7 +31,7 @@ class AddingButton(QPushButton):
             self.__create_and_add_icon_to_btn()
             self.__status = 0
 
-        # self.__chart_panel.create_Chart.add_new_plot( name, self.__color)
+        CreateChart().add_new_plot( name, self.__date, self.__price, self.__color)
 
 
 
@@ -57,9 +58,9 @@ class AddingButton(QPushButton):
 class ButtonsPanel(QGroupBox):
     __Colors = ["blue", "green", "red", "cyan", "magenta", "yellow", "black"]
 
-    def __init__(self):
+    def __init__(self, chart_panel):
         super().__init__()
-        # self.__chart_panel = chart_panel
+        self.__chart_panel = chart_panel
         self.__buttons = []
 
         self.__prepare_buttons_grid()
@@ -68,6 +69,13 @@ class ButtonsPanel(QGroupBox):
         list_of = FileReader("eurostat.csv").getCountries()
         return list_of
 
+    def __get_date(self):
+        date = FileReader("eurostat.csv").getDates()
+        return date
+
+    def __get_data(self):
+        data = FileReader("eurostat.csv").getData()
+        return data
     def __get_num_of_countries(self):
         list_of = self.__get_list()
         num_of_countires = len(list_of)
@@ -98,7 +106,7 @@ class ButtonsPanel(QGroupBox):
         for i in range(num_of_buttons):
             colour = self.__find_rand_color()
 
-            btn = AddingButton(self.__get_list()[i], colour)
+            btn = AddingButton(self.__get_list()[i], self.__get_date()[i], self.__get_data()[i], self.__chart_panel,  colour)
             self.__buttons.append(btn)
 
 
