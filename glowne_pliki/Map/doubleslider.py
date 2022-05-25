@@ -5,9 +5,8 @@ from PyQt5.QtGui import QFont
 
 class DoubleSlider(QWidget):
 
-    def __init__(self, parent=None, min_val=2007, max_val=2021):
+    def __init__(self, parent=None, min_val=0, max_val=29):
         super().__init__(parent)
-        self.__validate_args(min_val, max_val)
 
         self.__min_val = min_val
         self.__max_val = max_val
@@ -23,9 +22,6 @@ class DoubleSlider(QWidget):
         label2.setFont(QFont("Sanserif", 13))
         return label2
 
-    def __validate_args(self, min_val, max_val):
-        if min_val >= max_val:
-            raise Exception("Wrong values! max_val cannot be lower than min_val.")
 
     def __create_view(self):
         self.__slider_from = self.__create_slider_from()
@@ -43,7 +39,7 @@ class DoubleSlider(QWidget):
 
 
     def __create_slider_from(self):
-        a = (2007-1,2007-2,2008-1,2008-2,2009-1,2009-2,2010-S1,2010-S2,2011-S1,2011-S2,2012-S1,2012-S2,2013-S1,2013-S2,2014-S1,2014-S2,2015-S1,2015-S2,2016-S1,2016-S2,2017-S1,2017-S2,2018-S1,2018-S2,2019-S1,2019-S2,2020-S1,2020-S2,2021-S1,2021-S2)
+
         slider = QSlider(Qt.Horizontal)
         slider.setMinimum(self.__min_val)
         slider.setMaximum(self.__max_val-1)
@@ -70,8 +66,9 @@ class DoubleSlider(QWidget):
     def __handle_from_change(self):
         value_from = self.__slider_from.value()
         value_to = self.__slider_to.value()
+        a = ("2007-S1","2007-S2","2008-S1","2008-S2","2009-S1","2009-S2","2010-S1","2010-S2","2011-S1","2011-S2","2012-S1","2012-S2","2013-S1","2013-S2","2014-S1","2014-S2","2015-S1","2015-S2","2016-S1","2016-S2","2017-S1","2017-S2","2018-S1","2018-S2","2019-S1","2019-S2","2020-S1","2020-S2","2021-S1","2021-S2")
 
-        self.__label1.setText(str(value_from))
+        self.__label1.setText((str(a[value_from])))
 
         if value_from >= value_to:
             self.__slider_to.setValue(value_from + 1)
@@ -79,8 +76,9 @@ class DoubleSlider(QWidget):
     def __handle_to_change(self):
         value_from = self.__slider_from.value()
         value_to = self.__slider_to.value()
+        a = ("2007-S1","2007-S2","2008-S1","2008-S2","2009-S1","2009-S2","2010-S1","2010-S2","2011-S1","2011-S2","2012-S1","2012-S2","2013-S1","2013-S2","2014-S1","202014-S2","2015-S1","2015-S2","2016-S1","2016-S2","2017-S1","2017-S2","2018-S1","2018-S2","2019-S1","2019-S2","2020-S1","2020-S2","2021-S1","2021-S2")
 
-        self.__label2.setText(str(value_to))
+        self.__label2.setText(str(a[value_to]))
 
         if value_to <= value_from:
             self.__slider_from.setValue(value_to - 1)
