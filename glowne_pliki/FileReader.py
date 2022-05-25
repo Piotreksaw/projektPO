@@ -45,6 +45,7 @@ class Country:
             self.__date) + 1])
 
 
+
 if __name__ == "__main__":
     test = FileReader("eurostat.csv")
     poland = Country("Poland", test)

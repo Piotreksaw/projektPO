@@ -17,7 +17,7 @@ class CreateChart(FigureCanvasQTAgg):
 
         self.__axes = None
 
-    def add_new_plot(self, name, price, date, color):
+    def add_new_plot(self, name, color):
         if self.__axes is None:
             self.__axes = self.__fig.add_subplot(111)
 
