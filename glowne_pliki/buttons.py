@@ -7,7 +7,7 @@ class create_button(QPushButton):
         super().__init__(word)
 
 
-class Export_button(create_button):
+class Export_to_pdf_button(create_button):
     def __init__(self):
         super().__init__("Export to PDF")
 
@@ -33,6 +33,6 @@ class Export_and_something_buttons(QGroupBox):
         self.setLayout(layout)
 
     def __create_text_button(self):
-        self.__button1 = Export_button()
+        self.__button1 = Export_to_pdf_button()
         self.__button2 = Something_button()
         self.__text_panel = TP()
