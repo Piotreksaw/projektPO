@@ -86,17 +86,17 @@ class DoubleSlider(QWidget):
             self.__slider_from.setValue(value_to - 1)
 
 
-class SliderApp(QMainWindow):
+class SliderApp(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
 
         self.__init_view()
-        self.show()
+        # self.show()
 
     def __init_view(self):
-        self.setWindowTitle("double slider")
-        self.setGeometry(100,100,960,100)
+        # self.setWindowTitle("double slider")
+        # self.setGeometry(100,100,960,100)
 
         main_layout = QGridLayout()
         main_widget = QWidget(self)
@@ -111,11 +111,11 @@ class SliderApp(QMainWindow):
         main_layout.addWidget(self.__double_slider_widget)
 
 
-def main():
-    app = QApplication([])
-    slider_app = SliderApp()
-    sys.exit(app.exec_())
-
-
-if __name__ == "__main__":
-    main()
+# def main():
+#     app = QApplication([])
+#     slider_app = SliderApp()
+#     sys.exit(app.exec_())
+#
+#
+# if __name__ == "__main__":
+#     main()

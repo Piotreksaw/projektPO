@@ -12,13 +12,16 @@ from FileReader import Country, FileReader
 
 
 class AddingButton(QPushButton):
-    def  __init__(self, btn_name, color):
-        super().__init__(btn_name)
+    def  __init__(self, country_name, color, chart_panel):
+        super().__init__(country_name)
         self.__color = color
-        # self.__date = date
+        self.__file = FileReader("eurostat.csv")
+        self.__country = Country(country_name, self.__file)
+        # self.__dates = dates
         # self.__price = price
-        # self.__chart_panel = chart_panel
+        self.__chart_panel = chart_panel
         self.__status = 0
+
         self.clicked.connect(self.__update_chart)
 
 
@@ -31,7 +34,7 @@ class AddingButton(QPushButton):
             self.__create_and_add_icon_to_btn()
             self.__status = 0
 
-        # CreateChart.add_new_plot( name, self.__color)
+        CreateChart.add_new_plot( name, self.__country.get_all_values_for_country(), self.__file.get_dates(), self.__color)
 
 
 
@@ -62,22 +65,11 @@ class ButtonsPanel(QGroupBox):
         super().__init__()
         self.__chart_panel = chart_panel
         self.__buttons = []
-        self.file = FileReader("eurostat.csv")
+        self.__file = FileReader("eurostat.csv")
         self.__prepare_buttons_grid()
 
-    # def __get_list(self, country):
-    #     list_of = FileReader("eurostat.csv").getCountries()
-    #     return list_of
-    #
-    # def __get_date(self):
-    #     date = FileReader("eurostat.csv")
-    #     return date
-    #
-    # def __get_data(self):
-    #     data = FileReader("eurostat.csv").getData()
-    #     return data
     def __get_num_of_countries(self):
-        list_of = self.file.getCountries()
+        list_of = self.__file.get_countries()
         num_of_countires = len(list_of)
         # print(num_of_countires)
         return num_of_countires
@@ -106,7 +98,7 @@ class ButtonsPanel(QGroupBox):
         for i in range(num_of_buttons):
             colour = self.__find_rand_color()
 
-            btn = AddingButton(self.file.getCountries()[i], colour)
+            btn = AddingButton(self.__file.get_countries()[i] , colour, self.__chart_panel)
             self.__buttons.append(btn)
 
 
