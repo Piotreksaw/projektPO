@@ -8,16 +8,16 @@ from Charts.chart import CreateChart
 
 
 class Tabs(QWidget):
-    def __init__(self):
+    def __init__(self, chart):
         super().__init__()
-        self.__chart = CreateChart()
+        self.__chart = chart
 
 
         self.layout = QVBoxLayout(self)
         self.tabs = QTabWidget()
         self.tab1 = QWidget()
         self.tab2 = QWidget()
-        self.tabs.resize(50,50)
+        self.tabs.resize(100,100)
         self.tabs.addTab(self.tab1, "Wykres")
         self.tabs.addTab(self.tab2, "Mapa")
         self.tab1.layout = QVBoxLayout()

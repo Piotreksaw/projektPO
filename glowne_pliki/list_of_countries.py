@@ -21,7 +21,9 @@ class AddingButton(QPushButton):
         # self.__price = price
         self.__chart_panel = chart_panel
         self.__status = 0
-
+        # print(country_name)
+        # print(self.__file.get_dates())
+        # print(self.__country.get_all_values_for_country())
         self.clicked.connect(self.__update_chart)
 
 
@@ -34,7 +36,7 @@ class AddingButton(QPushButton):
             self.__create_and_add_icon_to_btn()
             self.__status = 0
 
-        CreateChart.add_new_plot( name, self.__country.get_all_values_for_country(), self.__file.get_dates(), self.__color)
+        self.__chart_panel.add_new_plot( name, self.__country.get_all_values_for_country(), self.__file.get_dates(), self.__color)
 
 
 
