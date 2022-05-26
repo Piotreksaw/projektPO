@@ -1,9 +1,9 @@
 import pandas as pd
-import numpy as geek
+
 
 class FileReader:
     def __init__(self, filepath):
-        # Wczytanie pliku wraz z zamiana ":" - (pustych miejsc) na "NaN"
+        # Wczytanie pliku wraz z zamiana ":" - (pustych miejsc) na "aa"
         self.__df = pd.read_csv(filepath, na_values=(":", "aa"))
         # Utworzenie listy poszczegolnych tytulow dat
         self.__dates = list(self.__df.columns[1:])
@@ -48,27 +48,22 @@ class Country:
         self.__list_of_countries = data.get_countries()
         self.__list_of_dates = data.get_dates()
 
-
     # Funkcja zwracająca listę wszystkich wartosci dla danego panstwa
     def get_all_values_for_country(self):
         country_num = self.__give_country_num()
         values_for_country = list(self.__data.iloc[country_num])
-
         values_for_country = values_for_country[1:]
-        # print("test float")
+        values_for_country = self.__change_from_str_to_float(values_for_country)
+        return values_for_country
+
+    # Funkcja zamieniająca wartości ze stringa do floata
+    def __change_from_str_to_float(self, values_for_country):
         new_list = list()
         for v in values_for_country:
-            # print(v)
-            # print(type(v))
-
             if isinstance(v, str):
-                # print("inside if")
-
-                if "," in v :
-                    # print("inside if")
-                    v = float(v.replace(",","."))
+                if "," in v:
+                    v = float(v.replace(",", "."))
                     new_list.append(v)
-
             else:
                 new_list.append(v)
         values_for_country = new_list
@@ -97,10 +92,4 @@ if __name__ == "__main__":
     poland = Country("Poland", test)
     poland.get_country_value_from_date("2009-S1")
     print(poland.get_all_values_for_country())
-    #
-    # print(test.get_dates()[4])
-    # for a in range(0, len(test.get_countries())):
-    #     country = Country(test.get_countries()[a], test)
-    #     date = country.get_country_value_from_date(test.get_dates()[4])
-    #     print((test.get_countries()[a], date))
 
