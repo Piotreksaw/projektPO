@@ -29,6 +29,7 @@ class CreateChart(FigureCanvasQTAgg):
         yy = price[self.start:self.end]
 
         self.__axes.plot(xx, yy, color, label= name)
+        self.__axes.set_xlim([self.start, self.end])
         self.__axes.legend()
         self.draw()
 

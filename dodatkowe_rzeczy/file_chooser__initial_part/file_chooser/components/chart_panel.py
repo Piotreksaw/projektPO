@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout
 
-from projektPO.dodatkowe_rzeczy.file_chooser.components.chart import Chart
-from projektPO.dodatkowe_rzeczy.file_chooser.components.slider_elem import SliderElem
+from file_chooser.components.chart import Chart
+from file_chooser.components.slider_elem import SliderElem
 
 
 class ChartPanel(QWidget):
@@ -22,8 +22,6 @@ class ChartPanel(QWidget):
         layout.addLayout(self.__period_factor_slider)
 
         self.setLayout(layout)
-
-        return layout
 
     def __update_chart(self):
         value_factor = self.__value_factor_slider.get_value()
