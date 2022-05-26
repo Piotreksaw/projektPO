@@ -3,7 +3,7 @@ import sys
 
 from PyQt5.QtWidgets import QPushButton, QProgressBar, QFileDialog, QHBoxLayout
 
-from file_chooser.components.io import FileReader
+from  projektPO.dodatkowe_rzeczy.file_chooser__initial_part.file_chooser.components.io import FileReader
 
 
 class FileLoader(QHBoxLayout):
@@ -41,7 +41,7 @@ class FileLoader(QHBoxLayout):
         if maybe_selected_file:
             self.__loader.setValue(50)
             file_reader = FileReader(maybe_selected_file)
-            file_reader.read()
+            # file_reader.read()
             self.__loader.setValue(100)
         else:
             print("sth wrong???")

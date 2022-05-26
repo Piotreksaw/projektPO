@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout
 
-from file_chooser.components.chart import Chart
-from file_chooser.components.slider_elem import SliderElem
+from  projektPO.dodatkowe_rzeczy.file_chooser__initial_part.file_chooser.components.chart import Chart
+from  projektPO.dodatkowe_rzeczy.file_chooser__initial_part.file_chooser.components.slider_elem import SliderElem
 
 
 class ChartPanel(QWidget):
