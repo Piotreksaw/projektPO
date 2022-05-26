@@ -16,6 +16,7 @@ class MainWindow(QWidget):
         height = 720
         name = "program"
 
+
         self.resize(width, height)
         self.setWindowTitle(name)
         # self.tab_widget = Tabs(self)
@@ -29,10 +30,10 @@ class MainWindow(QWidget):
         self.__slider = SliderApp()
 
         main_layout = QGridLayout()
-        main_layout.addWidget(self.__tabs, 0, 0, 1, 8)
-        main_layout.addWidget(self.__buttons2, 2, 0, 1, 8 )
-        main_layout.addWidget(self.__button_panel, 0, 8, 3, 2 )
-        main_layout.addWidget(self.__slider, 1, 0, 1,8 )
+        main_layout.addWidget(self.__tabs, 0, 0, 1, 9)
+        main_layout.addWidget(self.__buttons2, 2, 0, 1, 9 )
+        main_layout.addWidget(self.__button_panel, 0, 10, 3, 2 )
+        main_layout.addWidget(self.__slider, 1, 0, 1,9 )
 
 
         self.setLayout(main_layout)

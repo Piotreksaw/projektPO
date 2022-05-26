@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QSlider, QGridLayout, QLabel
 from PyQt5.Qt import Qt
 from PyQt5.QtGui import QFont
+from projektPO.glowne_pliki.FileReader import FileReader
 
 class DoubleSlider(QWidget):
 
@@ -11,6 +12,10 @@ class DoubleSlider(QWidget):
         self.__min_val = min_val
         self.__max_val = max_val
         self.__create_view()
+        self.__file = FileReader("eurostat.csv")
+
+
+
 
     def __create_label1(self):
         label1 = QLabel()
@@ -66,9 +71,8 @@ class DoubleSlider(QWidget):
     def __handle_from_change(self):
         value_from = self.__slider_from.value()
         value_to = self.__slider_to.value()
-        a = ("2007-S1","2007-S2","2008-S1","2008-S2","2009-S1","2009-S2","2010-S1","2010-S2","2011-S1","2011-S2","2012-S1","2012-S2","2013-S1","2013-S2","2014-S1","2014-S2","2015-S1","2015-S2","2016-S1","2016-S2","2017-S1","2017-S2","2018-S1","2018-S2","2019-S1","2019-S2","2020-S1","2020-S2","2021-S1","2021-S2")
-
-        self.__label1.setText((str(a[value_from])))
+        self.__a = self.__file.get_dates()
+        self.__label1.setText((str(self.__a[value_from])))
 
         if value_from >= value_to:
             self.__slider_to.setValue(value_from + 1)
@@ -76,9 +80,9 @@ class DoubleSlider(QWidget):
     def __handle_to_change(self):
         value_from = self.__slider_from.value()
         value_to = self.__slider_to.value()
-        a = ("2007-S1","2007-S2","2008-S1","2008-S2","2009-S1","2009-S2","2010-S1","2010-S2","2011-S1","2011-S2","2012-S1","2012-S2","2013-S1","2013-S2","2014-S1","202014-S2","2015-S1","2015-S2","2016-S1","2016-S2","2017-S1","2017-S2","2018-S1","2018-S2","2019-S1","2019-S2","2020-S1","2020-S2","2021-S1","2021-S2")
+        self.__a = self.__file.get_dates()
 
-        self.__label2.setText(str(a[value_to]))
+        self.__label2.setText(str(self.__a[value_to]))
 
         if value_to <= value_from:
             self.__slider_from.setValue(value_to - 1)
