@@ -2,7 +2,7 @@ import sys
 
 from PyQt5.QtWidgets import QApplication
 
-from projektPO.dodatkowe_rzeczy.file_chooser.file_chooser_app import FileChooserApp
+from file_chooser.file_chooser_app import FileChooserApp
 
 
 def main():

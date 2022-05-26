@@ -8,4 +8,4 @@ class TextPanel(QLineEdit):
         super().__init__()
         self.setAlignment(QtCore.Qt.AlignRight)
         self.setReadOnly(True)
-        self.setText("hej")
+        self.setText("hello")

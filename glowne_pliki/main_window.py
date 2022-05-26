@@ -13,7 +13,7 @@ class MainWindow(QWidget):
     def __init__(self):
         super(MainWindow, self).__init__()
         width = 1500
-        height = 720
+        height = 800
         name = "program"
 
 
@@ -23,6 +23,7 @@ class MainWindow(QWidget):
         self.__prepare_window()
 
     def __prepare_window(self):
+        # filepath = klasa do danych
         self.__chart = CreateChart()
         self.__tabs = Tabs(self.__chart)
         self.__buttons2 = Export_and_something_buttons()
