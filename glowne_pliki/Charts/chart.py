@@ -9,7 +9,7 @@ from projektPO.glowne_pliki.FileReader import FileReader, Country
 
 
 class CreateChart(FigureCanvasQTAgg):
-    def __init__(self, width = 5, height = 5, dpi = 100):
+    def __init__(self, width = 10, height = 6, dpi = 100):
         self.__fig = Figure(figsize=(width, height), dpi= dpi)
         super().__init__(self.__fig)
         self.start = 0
@@ -32,3 +32,6 @@ class CreateChart(FigureCanvasQTAgg):
         self.__axes.legend()
         self.draw()
 
+
+    def remove_plot(self):
+        self.__axes.cla()
