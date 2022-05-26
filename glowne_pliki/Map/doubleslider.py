@@ -101,8 +101,8 @@ class SliderApp(QWidget):
         main_widget.setLayout(main_layout)
 
         self.__add_widgets_to_main_layout(main_layout)
-
-        self.setCentralWidget(main_widget)
+        self.setLayout(main_layout)
+        # self.setCentralWidget(main_widget)
 
     def __add_widgets_to_main_layout(self, main_layout):
         self.__double_slider_widget = DoubleSlider()
