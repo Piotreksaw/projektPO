@@ -31,7 +31,7 @@ class AddingButton(QPushButton):
         name = self.text()
         if self.__status == 0:
             self.__create_and_add_icon_to_btn()
-            self.__chart_panel.add_new_plot( name, self.__country.get_all_values_for_country(), self.__file.get_dates(),
+            self.__chart_panel.add_data_for_chart( name, self.__country.get_all_values_for_country(), self.__file.get_dates(),
                                              self.__color)
 
             self.__status = 1
