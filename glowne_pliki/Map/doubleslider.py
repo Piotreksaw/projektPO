@@ -3,28 +3,32 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QSlider, QGridLa
 from PyQt5.Qt import Qt
 from PyQt5.QtGui import QFont
 from projektPO.glowne_pliki.FileReader import FileReader
+from projektPO.glowne_pliki.Charts.chart import UpdateDataFromSlider
 
 class DoubleSlider(QWidget):
 
-    def __init__(self, parent=None, min_val=0, max_val=29):
+    def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.__min_val = min_val
-        self.__max_val = max_val
-        self.__create_view()
         self.__file = FileReader("eurostat.csv")
-
+        self.__a = self.__file.get_dates()
+        self.__min_val = self.__a.index(self.__a[0])
+        self.__max_val = self.__a.index(self.__a[-1])
+        self.__create_view()
+        self.__pushing_values_forward = UpdateDataFromSlider()
 
 
 
     def __create_label1(self):
         label1 = QLabel()
         label1.setFont(QFont("Sanserif", 13))
+        label1.setText(str(self.__a[self.__min_val]))
         return label1
 
     def __create_label2(self):
         label2 = QLabel()
         label2.setFont(QFont("Sanserif", 13))
+        label2.setText((str(self.__a[self.__max_val])))
         return label2
 
 
@@ -33,6 +37,7 @@ class DoubleSlider(QWidget):
         self.__slider_to = self.__create_slider_to()
         self.__label1 = self.__create_label1()
         self.__label2 = self.__create_label2()
+
 
         layout = QGridLayout()
         layout.addWidget(self.__slider_from,0,0)
@@ -47,45 +52,60 @@ class DoubleSlider(QWidget):
 
         slider = QSlider(Qt.Horizontal)
         slider.setMinimum(self.__min_val)
-        slider.setMaximum(self.__max_val-1)
+        slider.setMaximum(self.__max_val)
         slider.setTickInterval(1)
         slider.setTickPosition(QSlider.TicksBelow)
 
         slider.setValue(self.__min_val)
         slider.valueChanged.connect(self.__handle_from_change)
+        slider.valueChanged.connect(self.__pushing_values_forward.push_data_to_chart(self.__get_current_from_value(), self.__get_current_to_value()))
+
+        # slider.valueChanged.connect(self.__pushing_values_forward)
+
 
         return slider
 
     def __create_slider_to(self):
         slider = QSlider(Qt.Horizontal)
-        slider.setMinimum(self.__min_val+1)
+        slider.setMinimum(self.__min_val)
         slider.setMaximum(self.__max_val)
         slider.setTickInterval(1)
         slider.setTickPosition(QSlider.TicksBelow)
 
         slider.setValue(self.__max_val)
         slider.valueChanged.connect(self.__handle_to_change)
+        slider.valueChanged.connect(self.__pushing_values_forward.push_data_to_chart(self.__get_current_from_value(), self.__get_current_to_value()))
+        # print(self.__handle_from_change())
 
         return slider
 
     def __handle_from_change(self):
         value_from = self.__slider_from.value()
         value_to = self.__slider_to.value()
-        self.__a = self.__file.get_dates()
-        self.__label1.setText((str(self.__a[value_from])))
 
-        if value_from >= value_to:
-            self.__slider_to.setValue(value_from + 1)
+        self.__label1.setText((str(self.__a[value_from])))
+        # self.__get_current_from_value()
+        if value_from > value_to:
+            self.__slider_to.setValue(value_from )
 
     def __handle_to_change(self):
         value_from = self.__slider_from.value()
         value_to = self.__slider_to.value()
-        self.__a = self.__file.get_dates()
+
 
         self.__label2.setText(str(self.__a[value_to]))
+        # self.__get_current_to_value()
+        if value_to < value_from:
+            self.__slider_from.setValue(value_to)
 
-        if value_to <= value_from:
-            self.__slider_from.setValue(value_to - 1)
+    def __get_current_from_value(self):
+        # print(self.__slider_from.value())
+        return self.__slider_from.value()
+
+    def __get_current_to_value(self):
+        # print(self.__slider_to.value())
+        return self.__slider_to.value()
+
 
 
 class SliderApp(QWidget):

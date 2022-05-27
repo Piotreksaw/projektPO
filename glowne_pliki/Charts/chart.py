@@ -7,32 +7,74 @@ from PyQt5.QtGui import QIcon, QPixmap
 
 from projektPO.glowne_pliki.FileReader import FileReader, Country
 
-
 class CreateChart(FigureCanvasQTAgg):
-    def __init__(self, width = 10, height = 6, dpi = 100):
+    def __init__(self, width = 11, height = 6, dpi = 90):
         self.__fig = Figure(figsize=(width, height), dpi= dpi)
         super().__init__(self.__fig)
-        self.start = 0
-        self.end = 30
+
         self.__axes = None
 
-    def add_new_plot(self, name, price, dates, color):
-        if self.__axes is None:
-            print(dates)
-            self.__axes = self.__fig.add_subplot(111)
-            print("test")
+
+
+    def add_data_for_chart(self, name, price, dates, color):
+        self.__dates = dates
+        self.__price = price
+        self.set_chart()
+
+        self.__add_plot(name, self.__dates, self.__price, color)
+
+    def __add_plot(self, name, dates, price, color):
 
 
 
+        print("test")
 
-        xx = dates[self.start:self.end]
-        yy = price[self.start:self.end]
+        self.__start = self.__dates.index(self.__dates[0])
+
+        self.__end = self.__dates.index(self.__dates[-1])
+        print(self.__start)
+        print(self.__price[self.__start])
+        print(self.__end)
+        print(self.__price[self.__end])
+
+
+
+        xx = dates[self.__start:self.__end]
+        yy = price[self.__start:self.__end]
 
         self.__axes.plot(xx, yy, color, label= name)
-        self.__axes.set_xlim([self.start, self.end])
+        self.__axes.set_xlim([self.__start, self.__end])
         self.__axes.legend()
         self.draw()
 
 
     def remove_plot(self):
         self.__axes.cla()
+        # self.__axes.
+
+
+    # def update_data_from_slider(self, start, end):
+    #     self.__start = start
+    #     self.__end = end
+    #     self.__new_boarders = [self.__start,self.__end]
+    #     return self.__new_boarders
+
+
+    def set_chart(self):
+        if self.__axes is None:
+            # print(dates)
+            self.__axes = self.__fig.add_subplot(111)
+
+
+class UpdateDataFromSlider:
+    def __init__(self):
+        pass
+
+
+    def push_data_to_chart(self, start, end):
+        self.__start = start
+        self.__end = end
+        print(self.__start)
+        print(self.__end)
+        self.__new_boarders = [self.__start, self.__end]
+        return self.__new_boarders
