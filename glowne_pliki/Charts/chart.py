@@ -7,12 +7,16 @@ from PyQt5.QtGui import QIcon, QPixmap
 
 from projektPO.glowne_pliki.FileReader import FileReader, Country
 
+
 class CreateChart(FigureCanvasQTAgg):
-    def __init__(self, width = 11, height = 6, dpi = 90):
+    def __init__(self, new_boarders, width = 11, height = 6, dpi = 90):
         self.__fig = Figure(figsize=(width, height), dpi= dpi)
         super().__init__(self.__fig)
-
         self.__axes = None
+        self.boardes = new_boarders
+        self.__start = None
+        self.__end = None
+
 
 
 
@@ -24,18 +28,31 @@ class CreateChart(FigureCanvasQTAgg):
         self.__add_plot(name, self.__dates, self.__price, color)
 
     def __add_plot(self, name, dates, price, color):
-
-
-
         print("test")
+        self.__dates = dates
+        # self.boarders = self.boarder_returner()
+        # print(self.boarders)
+        # if self.boarders == None:
+        #     pass
 
         self.__start = self.__dates.index(self.__dates[0])
-
         self.__end = self.__dates.index(self.__dates[-1])
-        print(self.__start)
-        print(self.__price[self.__start])
-        print(self.__end)
-        print(self.__price[self.__end])
+        # print(self.__dates)
+        # print(self.__start)
+        # print("test2")
+
+        # print("test3")
+        # if len(self.boardes[0]) != 0:
+        # # print(self.boardes())
+        # self.__start = self.boarders[0]
+        # self.__end = self.boarders[-1]
+        # self.__end = self.__end + 1
+
+
+        # print(self.__start)
+        # print(self.__price[self.__start])
+        # print(self.__end)
+        # print(self.__price[self.__end])
 
 
 
@@ -43,7 +60,9 @@ class CreateChart(FigureCanvasQTAgg):
         yy = price[self.__start:self.__end]
 
         self.__axes.plot(xx, yy, color, label= name)
-        self.__axes.set_xlim([self.__start, self.__end])
+        self.__axes.set_xlim([self.__start, self.__end - 1])
+        self.__fig.tight_layout()
+
         self.__axes.legend()
         self.draw()
 
@@ -53,11 +72,10 @@ class CreateChart(FigureCanvasQTAgg):
         # self.__axes.
 
 
-    # def update_data_from_slider(self, start, end):
-    #     self.__start = start
-    #     self.__end = end
-    #     self.__new_boarders = [self.__start,self.__end]
-    #     return self.__new_boarders
+    # def boarder_returner(self):
+    #     self.__boarders = self.boardes()
+    #     return self.__boarders
+
 
 
     def set_chart(self):
@@ -74,7 +92,12 @@ class UpdateDataFromSlider:
     def push_data_to_chart(self, start, end):
         self.__start = start
         self.__end = end
-        print(self.__start)
-        print(self.__end)
-        self.__new_boarders = [self.__start, self.__end]
-        return self.__new_boarders
+        # print(self.__start)
+        # print(self.__end)
+        self.new_boarders = [self.__start, self.__end]
+
+
+    def get_boarders(self):
+        print(self.new_boarders)
+        return self.new_boarders
+
