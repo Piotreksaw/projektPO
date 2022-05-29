@@ -3,10 +3,13 @@ import pandas as pd
 
 class FileReader:
     def __init__(self, filepath):
+
         # Wczytanie pliku wraz z zamiana ":" - (pustych miejsc) na "aa"
-        self.__df = pd.read_csv(filepath, na_values=(":", "aa"))
+        self.__df = pd.read_csv(filepath, na_values=(":", "Nan"))
+
         # Utworzenie listy poszczegolnych tytulow dat
         self.__dates = list(self.__df.columns[1:])
+
         # Utworzenie listy panstw
         self.__countries = self.__create_clear_list_of_countries()
 
@@ -16,6 +19,7 @@ class FileReader:
         countries = list(self.__df[header[0]])
         countries = countries[3:]
         countries = self.__shorten_countries_names(countries)
+
         return countries
 
     # Funkcja sluzaca do usuwania dlugich nawiasow z nazw panstw
@@ -24,6 +28,7 @@ class FileReader:
             check_for_length_of_countries = list_of_countries[a].split(" ")
             if len(check_for_length_of_countries) >= 2 and check_for_length_of_countries[1][0] == "(":
                 list_of_countries[a] = check_for_length_of_countries[0]
+
         return list_of_countries
 
     def __repr__(self):
@@ -53,6 +58,7 @@ class Country:
         country_num = self.__give_country_num()
         values_for_country = list(self.__data.iloc[country_num])
         values_for_country = values_for_country[1:]
+        # print(values_for_country)
         values_for_country = self.__change_from_str_to_float(values_for_country)
         return values_for_country
 

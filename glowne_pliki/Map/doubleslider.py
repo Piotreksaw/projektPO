@@ -7,15 +7,17 @@ from projektPO.glowne_pliki.Charts.chart import UpdateDataFromSlider
 
 class DoubleSlider(QWidget):
 
-    def __init__(self, parent=None):
+    def __init__(self, update_method, parent=None):
         super().__init__(parent)
 
         self.__file = FileReader("eurostat.csv")
         self.__a = self.__file.get_dates()
         self.__min_val = self.__a.index(self.__a[0])
         self.__max_val = self.__a.index(self.__a[-1])
+        self.__update_method = update_method
         self.__create_view()
-        self.__pushing_values_forward = UpdateDataFromSlider()
+
+
 
 
 
@@ -37,7 +39,8 @@ class DoubleSlider(QWidget):
         self.__slider_to = self.__create_slider_to()
         self.__label1 = self.__create_label1()
         self.__label2 = self.__create_label2()
-
+        # self.__slider_from.valueChanged.connect(self.get_current_from_value)
+        # self.__slider_to.valueChanged.connect(self.get_current_to_value)
 
         layout = QGridLayout()
         layout.addWidget(self.__slider_from,0,0)
@@ -58,9 +61,10 @@ class DoubleSlider(QWidget):
 
         slider.setValue(self.__min_val)
         slider.valueChanged.connect(self.__handle_from_change)
-        slider.valueChanged.connect(self.__pushing_values_forward.push_data_to_chart(self.__get_current_from_value(), self.__get_current_to_value()))
+        # slider.valueChanged.connect(self.data_pusher())
+        #tutaj nie działa!!!
 
-        # slider.valueChanged.connect(self.__pushing_values_forward)
+        # slider.valueChanged.connect(self.__pushing_values_forward
 
 
         return slider
@@ -73,8 +77,10 @@ class DoubleSlider(QWidget):
         slider.setTickPosition(QSlider.TicksBelow)
 
         slider.setValue(self.__max_val)
+
         slider.valueChanged.connect(self.__handle_to_change)
-        slider.valueChanged.connect(self.__pushing_values_forward.push_data_to_chart(self.__get_current_from_value(), self.__get_current_to_value()))
+
+        # slider.valueChanged.connect(self.data_pusher())
         # print(self.__handle_from_change())
 
         return slider
@@ -84,35 +90,44 @@ class DoubleSlider(QWidget):
         value_to = self.__slider_to.value()
 
         self.__label1.setText((str(self.__a[value_from])))
-        # self.__get_current_from_value()
+
         if value_from > value_to:
             self.__slider_to.setValue(value_from )
+        self.data_pusher()
+        return value_from
+
 
     def __handle_to_change(self):
         value_from = self.__slider_from.value()
         value_to = self.__slider_to.value()
 
-
         self.__label2.setText(str(self.__a[value_to]))
-        # self.__get_current_to_value()
+        # self.get_current_to_value()
         if value_to < value_from:
             self.__slider_from.setValue(value_to)
+        self.data_pusher()
 
-    def __get_current_from_value(self):
+    def get_current_from_value(self):
         # print(self.__slider_from.value())
         return self.__slider_from.value()
 
-    def __get_current_to_value(self):
-        # print(self.__slider_to.value())
+    def get_current_to_value(self):
+
         return self.__slider_to.value()
+
+    def data_pusher(self):
+        min_val = self.get_current_from_value()
+        max_val = self.get_current_to_value()
+
+        self.__update_method(min_val, max_val)
 
 
 
 class SliderApp(QWidget):
 
-    def __init__(self, parent=None):
+    def __init__(self,update_method, parent=None):
         super().__init__(parent)
-
+        self.__update_method = update_method
         self.__init_view()
         # self.show()
 
@@ -129,7 +144,7 @@ class SliderApp(QWidget):
         # self.setCentralWidget(main_widget)
 
     def __add_widgets_to_main_layout(self, main_layout):
-        self.__double_slider_widget = DoubleSlider()
+        self.__double_slider_widget = DoubleSlider(self.__update_method)
         main_layout.addWidget(self.__double_slider_widget)
 
 

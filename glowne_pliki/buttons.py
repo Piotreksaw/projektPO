@@ -4,7 +4,7 @@ from dodatkowe_rzeczy.file_chooser__initial_part.file_chooser.components.file_lo
 
 
 class create_button(QPushButton):
-    def __init__(self,word):
+    def __init__(self, word):
         super().__init__(word)
 
 

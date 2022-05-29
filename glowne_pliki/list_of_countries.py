@@ -17,8 +17,6 @@ class AddingButton(QPushButton):
         self.__color = color
         self.__file = FileReader("eurostat.csv")
         self.__country = Country(country_name, self.__file)
-        # self.__dates = dates
-        # self.__price = price
         self.__chart_panel = chart_panel
         self.__status = 0
         # print(country_name)
@@ -74,6 +72,7 @@ class ButtonsPanel(QGroupBox):
         self.__chart_panel = chart_panel
         self.__buttons = []
         self.__file = FileReader("eurostat.csv")
+
         self.__prepare_buttons_grid()
 
     def __get_num_of_countries(self):
