@@ -97,7 +97,7 @@ class UpdateDataFromSlider:
         self.new_boarders = [self.__start, self.__end]
 
 
-    def get_boarders(self):
+    def boarder_returner(self):
         print(self.new_boarders)
         return self.new_boarders
 

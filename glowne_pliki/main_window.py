@@ -8,6 +8,13 @@ from list_of_countries import ButtonsPanel
 from Charts.chart import CreateChart
 #from Map.doubleslider import SliderApp
 
+from Charts.chart import CreateChart, UpdateDataFromSlider
+from Map.doubleslider import SliderApp
+from projektPO.dodatkowe_rzeczy.file_chooser__initial_part.file_chooser.components.file_loader import FileLoader
+
+
+
+
 
 from Charts.chart import CreateChart, UpdateDataFromSlider
 from Map.doubleslider import SliderApp
@@ -37,6 +44,7 @@ class MainWindow(QWidget):
         self.__tabs = Tabs(self.__chart)
         self.__buttons2 = Export_and_something_buttons()
         self.__button_panel = ButtonsPanel(self.__chart)
+
         self.__slider = SliderApp()
         self.__loader = FileLoader(self.__name)
 
