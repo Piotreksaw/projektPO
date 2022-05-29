@@ -13,9 +13,6 @@ from Map.doubleslider import SliderApp
 from projektPO.dodatkowe_rzeczy.file_chooser__initial_part.file_chooser.components.file_loader import FileLoader
 
 
-
-
-
 from Charts.chart import CreateChart, UpdateDataFromSlider
 from Map.doubleslider import SliderApp
 from projektPO.dodatkowe_rzeczy.file_chooser__initial_part.file_chooser.components.file_loader import FileLoader
@@ -28,7 +25,6 @@ class MainWindow(QWidget):
         height = 800
         name = "program"
 
-
         self.resize(width, height)
         self.setWindowTitle(name)
         # self.tab_widget = Tabs(self)
@@ -39,8 +35,8 @@ class MainWindow(QWidget):
         # filepath = klasa do danych
         self.__name = "hej"
         self.__update = UpdateDataFromSlider()
-        self.__slider = SliderApp(self.__update.push_data_to_chart)
-        self.__chart = CreateChart(self.__update.get_boarders)
+        self.__slider = SliderApp()
+        self.__chart = CreateChart()
         self.__tabs = Tabs(self.__chart)
         self.__buttons2 = Export_and_something_buttons()
         self.__button_panel = ButtonsPanel(self.__chart)

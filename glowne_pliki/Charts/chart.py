@@ -9,11 +9,11 @@ from projektPO.glowne_pliki.FileReader import FileReader, Country
 
 
 class CreateChart(FigureCanvasQTAgg):
-    def __init__(self, new_boarders, width = 11, height = 6, dpi = 90):
+    def __init__(self, width = 11, height = 6, dpi = 90):
         self.__fig = Figure(figsize=(width, height), dpi= dpi)
         super().__init__(self.__fig)
         self.__axes = None
-        self.boardes = new_boarders
+
         self.__start = None
         self.__end = None
 
@@ -30,7 +30,7 @@ class CreateChart(FigureCanvasQTAgg):
     def __add_plot(self, name, dates, price, color):
         print("test")
         self.__dates = dates
-        # self.boarders = self.boarder_returner()
+
         # print(self.boarders)
         # if self.boarders == None:
         #     pass
