@@ -19,14 +19,16 @@ class PdfSaveButton(QPushButton):
         img = ImageReader(img_data)
 
         filename = self.__prepare_file_chooser()
-        self.__pdf_generator.create_and_save_report(img, filename)
+        if filename:
+            self.__pdf_generator.create_and_save_report(img, filename)
+        else:
+            print("nie wybrano lokalizacji")
+            return
+
 
     def __prepare_file_chooser(self):
         options = QFileDialog.DontUseNativeDialog
         parent = None
         current_dir = os.path.dirname(sys.argv[0])
         filename, _ = QFileDialog.getSaveFileName(parent, "Save PDF report", current_dir, filter="PDF (*.pdf)")
-        if filename:
-            return filename
-        else:
-            print("nie wybrano lokalizacji")
+        return filename
