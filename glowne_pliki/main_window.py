@@ -5,6 +5,10 @@ from buttons import Export_and_something_buttons
 from PyQt5. QtCore import pyqtSlot
 from tabs import Tabs
 from list_of_countries import ButtonsPanel
+from Charts.chart import CreateChart
+#from Map.doubleslider import SliderApp
+
+
 from Charts.chart import CreateChart, UpdateDataFromSlider
 from Map.doubleslider import SliderApp
 from projektPO.dodatkowe_rzeczy.file_chooser__initial_part.file_chooser.components.file_loader import FileLoader
@@ -40,7 +44,8 @@ class MainWindow(QWidget):
         main_layout.addWidget(self.__tabs, 0, 0, 1, 9)
         main_layout.addWidget(self.__buttons2, 2, 0, 1, 9 )
         main_layout.addWidget(self.__button_panel, 0, 10, 3, 2 )
-        #main_layout.addWidget(self.__slider, 1, 0, 1,9 )
+        main_layout.addWidget(self.__slider, 1, 0, 1,9 )
+        # main_layout.addLayout(self.__loader, 3,0)
 
 
 
