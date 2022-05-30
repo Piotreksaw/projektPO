@@ -7,10 +7,10 @@ from projektPO.glowne_pliki.Charts.chart import CreateChart
 
 class DoubleSlider(QWidget):
 
-    def __init__(self, chart_panel, parent=None):
+    def __init__(self, chart_panel, filrpath, parent=None):
         super().__init__(parent)
         self.__chart_panel = chart_panel
-        self.__file = FileReader("eurostat.csv")
+        self.__file = FileReader(filrpath)
         self.__a = self.__file.get_dates()
         print(self.__a)
         self.__min_val = self.__a.index(self.__a[0])
@@ -108,9 +108,10 @@ class DoubleSlider(QWidget):
 
 class SliderApp(QWidget):
 
-    def __init__(self, chart_panel, parent=None):
+    def __init__(self, chart_panel, filepath, parent=None):
         super().__init__(parent)
         self.chart_panel = chart_panel
+        self.__filepath = filepath
 
         self.__init_view()
         # self.show()
@@ -127,5 +128,5 @@ class SliderApp(QWidget):
         # self.setCentralWidget(main_widget)
 
     def __add_widgets_to_main_layout(self, main_layout):
-        self.__double_slider_widget = DoubleSlider(self.chart_panel)
+        self.__double_slider_widget = DoubleSlider(self.chart_panel, self.__filepath)
         main_layout.addWidget(self.__double_slider_widget)

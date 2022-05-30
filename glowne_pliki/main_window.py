@@ -10,10 +10,8 @@ from Charts.chart import CreateChart
 
 from Charts.chart import CreateChart, UpdateDataFromSlider
 from Map.doubleslider import SliderApp
-from projektPO.dodatkowe_rzeczy.file_chooser__initial_part.file_chooser.components.file_loader import FileLoader
 
-
-from Charts.chart import CreateChart, UpdateDataFromSlider
+from Charts.chart import CreateChart
 from Map.doubleslider import SliderApp
 from projektPO.dodatkowe_rzeczy.file_chooser__initial_part.file_chooser.components.file_loader import FileLoader
 
@@ -39,9 +37,9 @@ class MainWindow(QWidget):
         # self.__slider = SliderApp(self.__chart)
         self.__tabs = Tabs(self.__chart)
         self.__buttons2 = Export_and_something_buttons()
-        self.__button_panel = ButtonsPanel(self.__chart, self.__loader)
+        self.__button_panel = ButtonsPanel(self.__chart, self.__loader.get_filepath)
 
-        self.__slider = SliderApp(self.__chart)
+        self.__slider = SliderApp(self.__chart, self.__loader.get_filepath)
 
 
         main_layout = QGridLayout()
@@ -49,7 +47,7 @@ class MainWindow(QWidget):
         main_layout.addWidget(self.__buttons2, 2, 0, 1, 9 )
         main_layout.addWidget(self.__button_panel, 0, 10, 3, 2 )
         main_layout.addWidget(self.__slider, 1, 0, 1,9 )
-        # main_layout.addLayout(self.__loader, 3,0)
+        main_layout.addLayout(self.__loader, 3,0)
 
 
 

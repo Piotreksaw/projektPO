@@ -12,10 +12,10 @@ from FileReader import Country, FileReader
 
 
 class AddingButton(QPushButton):
-    def  __init__(self, country_name, color, chart_panel):
+    def  __init__(self, country_name, color, chart_panel, filepath):
         super().__init__(country_name)
         self.__color = color
-        self.__file = FileReader("eurostat.csv")
+        self.__file = FileReader(filepath)
         self.__country = Country(country_name, self.__file)
         self.__chart_panel = chart_panel
         self.__status = 0
@@ -75,7 +75,8 @@ class ButtonsPanel(QGroupBox):
         super().__init__()
         self.__chart_panel = chart_panel
         self.__buttons = []
-        self.__file = FileReader(filepath)
+        self.__filepath = filepath
+        self.__file = FileReader(self.__filepath)
 
         self.__prepare_buttons_grid()
 
@@ -109,7 +110,7 @@ class ButtonsPanel(QGroupBox):
         for i in range(num_of_buttons):
             colour = self.__find_rand_color()
 
-            btn = AddingButton(self.__file.get_countries()[i] , colour, self.__chart_panel)
+            btn = AddingButton(self.__file.get_countries()[i] , colour, self.__chart_panel, self.__filepath)
             self.__buttons.append(btn)
 
 

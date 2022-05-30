@@ -28,12 +28,15 @@ class FileLoader(QHBoxLayout):
         parent = None
         current_dir = os.path.dirname(sys.argv[0])
         options = QFileDialog.DontUseNativeDialog
-        maybe_selected_file, _ = QFileDialog.getOpenFileName(parent, "Choose csv file",
+        self.maybe_selected_file, _ = QFileDialog.getOpenFileName(parent, "Choose csv file",
                                                              current_dir, "CSV (*.csv);;All Files (*)",
                                                              options=options)
-        if maybe_selected_file:
-            f = open("filepath.txt", "w+")
-            f.write(maybe_selected_file)
-            f.close()
-        else:
-            print("does not work")
+        # if maybe_selected_file:
+        #
+        # else:
+        #     print("does not work")
+
+    def get_filepath(self):
+        return self.maybe_selected_file
+
+
