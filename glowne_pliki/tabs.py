@@ -2,7 +2,6 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QGridLayout, QGroupBox, QLineEdit, QTabWidget, QPushButton
 # from PyQt5 import QtCore
 from Map.geo_example import MapChart
-from candies_example import CandiesChart
 from Charts.chart import CreateChart
 
 
