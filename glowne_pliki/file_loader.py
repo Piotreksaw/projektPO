@@ -2,6 +2,7 @@ import os
 import sys
 
 from PyQt5.QtWidgets import QPushButton, QProgressBar, QFileDialog, QHBoxLayout
+from list_of_countries import ButtonsPanel
 
 
 class FileLoader(QHBoxLayout):
@@ -10,7 +11,7 @@ class FileLoader(QHBoxLayout):
         super().__init__()
         self.__selected_filepath = 'none'
         self.__create_all(btn_name)
-        # self.selected_filepath = self.get_filepath()
+
 
     def __create_all(self, btn_name, parent=None):
         self.__file_loader_dialog_btn = self.__create_file_loader_dialog_btn(btn_name)
@@ -27,14 +28,18 @@ class FileLoader(QHBoxLayout):
         parent = None
         current_dir = os.path.dirname(sys.argv[0])
         options = QFileDialog.DontUseNativeDialog
-        self.__maybe_selected_file, _ = QFileDialog.getOpenFileName(parent, "Choose csv file",
+        self.maybe_selected_file, _ = QFileDialog.getOpenFileName(parent, "Choose csv file",
                                                                     current_dir, "CSV (*.csv)",
                                                                     options=options)
 
-        if self.__maybe_selected_file:
+        if self.maybe_selected_file:
+            self.__splitted = self.maybe_selected_file.split("/")
+            self.__splitted = self.__splitted[-1]
+            self.maybe_selected_file = self.__splitted
+
+
             print("dziala")
+
         else:
             print("does not work")
 
-    # def get_filepath(self):
-    # return self.__maybe_selected_file

@@ -32,13 +32,14 @@ class AddingButton(QPushButton):
         elif self.__status == 1:
             self.__create_and_add_icon_to_btn()
             self.__chart_panel.remove_plot()
+
             self.__status = 0
 
     def get_status(self):
         return self.__status
 
-    def remove_plot(self):
-        pass
+    # def remove_plot(self):
+    #     pass
 
     def __create_and_add_icon_to_btn(self, width=40, height=5):
         if self.__status == 0:
@@ -72,6 +73,10 @@ class ButtonsPanel(QGroupBox):
         self.__file = FileReader(self.__filepath)
 
         self.__prepare_buttons_grid()
+
+
+    def get_filepath(self, filepath):
+        self.__filepath = filepath
 
     def __get_num_of_countries(self):
         list_of = self.__file.get_countries()
