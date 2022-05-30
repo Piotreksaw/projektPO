@@ -4,7 +4,7 @@ from  projektPO.dodatkowe_rzeczy.file_chooser__initial_part.file_chooser.compone
 from  projektPO.dodatkowe_rzeczy.file_chooser__initial_part.file_chooser.components.file_loader import FileLoader
 
 
-class FileChooserApp(QMainWindow):
+class FileChooserApp(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
@@ -13,11 +13,7 @@ class FileChooserApp(QMainWindow):
 
         self.show()
 
-    def __init_default_values(self):
-        self.__padding_x = 250
-        self.__padding_y = 250
-        self.__width = 900
-        self.__height = 600
+
 
     def __init_view(self):
         self.setWindowTitle("FileChooserApp Example")

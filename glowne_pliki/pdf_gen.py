@@ -1,6 +1,6 @@
 from fpdf import FPDF
 
-from Charts import CreateChart
+from projektPO.glowne_pliki.Charts.chart import CreateChart
 
 
 #wykres =CreateChart
