@@ -1,18 +1,13 @@
 import random
-import sys
-
 from PIL import Image, ImageDraw
 from PIL.ImageQt import ImageQt
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
-from matplotlib.figure import Figure
-
-from FileReader import Country, FileReader
+from file_reader import Country, FileReader
 
 
 class AddingButton(QPushButton):
-    def  __init__(self, country_name, color, chart_panel, filepath):
+    def __init__(self, country_name, color, chart_panel, filepath):
         super().__init__(country_name)
         self.__color = color
         self.__file = FileReader(filepath)
@@ -24,13 +19,13 @@ class AddingButton(QPushButton):
         # print(self.__country.get_all_values_for_country())
         self.clicked.connect(self.__update_chart)
 
-
     def __update_chart(self):
         name = self.text()
         if self.__status == 0:
             self.__create_and_add_icon_to_btn()
-            self.__chart_panel.add_data_for_chart( name, self.__country.get_all_values_for_country(), self.__file.get_dates(),
-                                             self.__color)
+            self.__chart_panel.add_data_for_chart(name, self.__country.get_all_values_for_country(),
+                                                  self.__file.get_dates(),
+                                                  self.__color)
 
             self.__status = 1
 
@@ -42,15 +37,12 @@ class AddingButton(QPushButton):
     def get_status(self):
         return self.__status
 
-
     def remove_plot(self):
         pass
 
-
-
-    def __create_and_add_icon_to_btn(self, width = 40, height =5):
+    def __create_and_add_icon_to_btn(self, width=40, height=5):
         if self.__status == 0:
-            shape = ((0,0 ), (width - 1, height -1))
+            shape = ((0, 0), (width - 1, height - 1))
             rectangle = Image.new("RGBA", (width, height))
             rectangle_img = ImageDraw.Draw(rectangle)
             rectangle_img.rectangle(shape, fill=self.__color)
@@ -59,7 +51,7 @@ class AddingButton(QPushButton):
             rectangle_icon = QIcon(rectangle_pixmap)
             self.setIcon(rectangle_icon)
         else:
-            shape = ((0,0 ), (width - 1, height -1))
+            shape = ((0, 0), (width - 1, height - 1))
             rectangle = Image.new("RGBA", (width, height))
             rectangle_img = ImageDraw.Draw(rectangle)
             rectangle_img.rectangle(shape, fill=self.__color)
@@ -67,6 +59,7 @@ class AddingButton(QPushButton):
             rectangle_pixmap = QPixmap.fromImage(rectangle_qt)
             rectangle_icon = QIcon(None)
             self.setIcon(rectangle_icon)
+
 
 class ButtonsPanel(QGroupBox):
     __Colors = ["blue", "green", "red", "cyan", "magenta", "yellow", "black"]
@@ -103,16 +96,14 @@ class ButtonsPanel(QGroupBox):
         layout.addWidget(self.scroll)
         self.setLayout(layout)
 
-
     def __create_button(self):
         num_of_buttons = self.__get_num_of_countries()
 
         for i in range(num_of_buttons):
             colour = self.__find_rand_color()
 
-            btn = AddingButton(self.__file.get_countries()[i] , colour, self.__chart_panel, self.__filepath)
+            btn = AddingButton(self.__file.get_countries()[i], colour, self.__chart_panel, self.__filepath)
             self.__buttons.append(btn)
-
 
     def __find_rand_color(self):
         color_id = random.randint(0, len(self.__Colors) - 1)

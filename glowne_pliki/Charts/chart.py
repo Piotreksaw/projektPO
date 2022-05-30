@@ -1,15 +1,19 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout
 # from PyQt5.QtChart import *
+from io import BytesIO
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 from matplotlib import pyplot
 from PyQt5.QtGui import QIcon, QPixmap
 
-from glowne_pliki.FileReader import FileReader, Country
+from glowne_pliki.file_reader import FileReader, Country
 
 
 class CreateChart(FigureCanvasQTAgg):
+    # Zmienna potrzebna do stworzenia pdf
+    __IMG_FORMAT = "png"
+
     def __init__(self, width = 11, height = 6, dpi = 90):
         self.__fig = Figure(figsize=(width, height), dpi= dpi)
         super().__init__(self.__fig)
@@ -18,6 +22,12 @@ class CreateChart(FigureCanvasQTAgg):
         self.__start = None
         self.__end = None
 
+    def get_img(self):
+        img_data = BytesIO()
+        self.__fig.savefig(img_data, format=self.__IMG_FORMAT)
+        seek_offset = 0
+        img_data.seek(seek_offset)
+        return img_data
 
     def add_data_for_chart(self, name, price, dates, color):
         self.__dates = dates
