@@ -3,8 +3,9 @@ import pandas as pd
 
 class FileReader:
     def __init__(self, filepath):
+        self.__filepath = filepath
         # Wczytanie pliku wraz z zamiana ":" - (pustych miejsc) na "aa"
-        self.__df = pd.read_csv(filepath, na_values=(":", "aa"))
+        self.__df = pd.read_csv(self.__filepath, na_values=(":", "Nan"))
         # Utworzenie listy poszczegolnych tytulow dat
         self.__dates = list(self.__df.columns[1:])
         # Utworzenie listy panstw

@@ -1,9 +1,7 @@
-import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QGridLayout, QGroupBox, QLineEdit, QTabWidget, QPushButton
-# from PyQt5 import QtCore
-from Map.geo_example import MapChart
-from Charts.chart import CreateChart
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QTabWidget
 
+
+# from PyQt5 import QtCore
 
 
 class Tabs(QWidget):

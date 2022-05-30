@@ -2,15 +2,15 @@ import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QSlider, QGridLayout, QLabel
 from PyQt5.Qt import Qt
 from PyQt5.QtGui import QFont
-from glowne_pliki.file_reader import FileReader
-from glowne_pliki.Charts.chart import CreateChart
+from projektPO.glowne_pliki.file_reader import FileReader
+from projektPO.glowne_pliki.chart import CreateChart
 
 class DoubleSlider(QWidget):
 
-    def __init__(self, chart_panel, filrpath, parent=None):
+    def __init__(self, chart_panel, filepath, parent=None):
         super().__init__(parent)
         self.__chart_panel = chart_panel
-        self.__file = FileReader(filrpath)
+        self.__file = FileReader(filepath)
         self.__a = self.__file.get_dates()
         print(self.__a)
         self.__min_val = self.__a.index(self.__a[0])
@@ -103,12 +103,9 @@ class DoubleSlider(QWidget):
         self.__chart_panel.get_end(value_to)
 
 
-
-
-
 class SliderApp(QWidget):
 
-    def __init__(self, chart_panel, filepath, parent=None):
+    def __init__(self, chart_panel, filepath,  parent=None):
         super().__init__(parent)
         self.chart_panel = chart_panel
         self.__filepath = filepath
@@ -128,5 +125,5 @@ class SliderApp(QWidget):
         # self.setCentralWidget(main_widget)
 
     def __add_widgets_to_main_layout(self, main_layout):
-        self.__double_slider_widget = DoubleSlider(self.chart_panel, self.__filepath)
+        self.__double_slider_widget = DoubleSlider(self.chart_panel)
         main_layout.addWidget(self.__double_slider_widget)

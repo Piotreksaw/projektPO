@@ -1,7 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow, QWidget, QGridLayout
 
 from  projektPO.dodatkowe_rzeczy.file_chooser__initial_part.file_chooser.components.chart_panel import ChartPanel
-from  projektPO.dodatkowe_rzeczy.file_chooser__initial_part.file_chooser.components.file_loader import FileLoader
 
 
 class FileChooserApp(QWidget):
