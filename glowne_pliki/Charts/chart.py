@@ -29,7 +29,7 @@ class CreateChart(FigureCanvasQTAgg):
 
     def get_start(self, start):
         self.__start = start
-        print(self.__start)
+
 
     def get_end(self, end):
         self.__end = end
@@ -38,28 +38,22 @@ class CreateChart(FigureCanvasQTAgg):
         print("test")
         self.__dates = dates
 
+        if self.__start == None and self.__end == None:
+            self.__start = self.__dates.index(self.__dates[0])
+            self.__end = self.__dates.index(self.__dates[-1])
+        print(self.__start)
+        print(self.__end)
         # print(self.boarders)
         # if self.boarders == None:
         #     pass
 
-        # self.__start = self.__dates.index(self.__dates[0])
-        # self.__end = self.__dates.index(self.__dates[-1])
         # print(self.__dates)
         # print(self.__start)
         # print("test2")
 
-        # print("test3")
-        # if len(self.boardes[0]) != 0:
-        # # print(self.boardes())
-        # self.__start = self.boarders[0]
-        # self.__end = self.boarders[-1]
-        # self.__end = self.__end + 1
 
 
-        # print(self.__start)
-        # print(self.__price[self.__start])
-        # print(self.__end)
-        # print(self.__price[self.__end])
+
 
 
 

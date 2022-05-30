@@ -9,7 +9,7 @@ class DoubleSlider(QWidget):
 
     def __init__(self, chart_panel, parent=None):
         super().__init__(parent)
-        self.__chart_panel = CreateChart()
+        self.__chart_panel = chart_panel
         self.__file = FileReader("eurostat.csv")
         self.__a = self.__file.get_dates()
         self.__min_val = self.__a.index(self.__a[0])
@@ -108,15 +108,15 @@ class DoubleSlider(QWidget):
         if value_to < value_from:
             self.__slider_from.setValue(value_to)
         # self.data_pusher()
-        self.__chart_panel.get_start(value_to)
+        self.__chart_panel.get_end(value_to)
 
-    def get_current_from_value(self):
-        # print(self.__slider_from.value())
-        return self.__slider_from.value()
-
-    def get_current_to_value(self):
-
-        return self.__slider_to.value()
+    # def get_current_from_value(self):
+    #     # print(self.__slider_from.value())
+    #     return self.__slider_from.value()
+    #
+    # def get_current_to_value(self):
+    #
+    #     return self.__slider_to.value()
 
     # def data_pusher(self):
     #     min_val = self.get_current_from_value()

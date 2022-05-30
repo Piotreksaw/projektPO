@@ -33,7 +33,7 @@ class MainWindow(QWidget):
 
     def __prepare_window(self):
         # filepath = klasa do danych
-        self.__name = "hej"
+        self.__name = "program czasem działający"
         self.__update = UpdateDataFromSlider()
         self.__chart = CreateChart()
         # self.__slider = SliderApp(self.__chart)
