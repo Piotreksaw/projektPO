@@ -34,15 +34,15 @@ class MainWindow(QWidget):
     def __prepare_window(self):
         # filepath = klasa do danych
         self.__name = "program czasem działający"
-        self.__update = UpdateDataFromSlider()
+        self.__loader = FileLoader(self.__name)
         self.__chart = CreateChart()
         # self.__slider = SliderApp(self.__chart)
         self.__tabs = Tabs(self.__chart)
         self.__buttons2 = Export_and_something_buttons()
-        self.__button_panel = ButtonsPanel(self.__chart)
+        self.__button_panel = ButtonsPanel(self.__chart, self.__loader)
 
         self.__slider = SliderApp(self.__chart)
-        self.__loader = FileLoader(self.__name)
+
 
         main_layout = QGridLayout()
         main_layout.addWidget(self.__tabs, 0, 0, 1, 9)

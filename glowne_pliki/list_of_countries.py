@@ -39,8 +39,12 @@ class AddingButton(QPushButton):
             self.__chart_panel.remove_plot()
             self.__status = 0
 
+    def get_status(self):
+        return self.__status
 
 
+    def remove_plot(self):
+        pass
 
 
 
@@ -67,11 +71,11 @@ class AddingButton(QPushButton):
 class ButtonsPanel(QGroupBox):
     __Colors = ["blue", "green", "red", "cyan", "magenta", "yellow", "black"]
 
-    def __init__(self, chart_panel):
+    def __init__(self, chart_panel, filepath):
         super().__init__()
         self.__chart_panel = chart_panel
         self.__buttons = []
-        self.__file = FileReader("eurostat.csv")
+        self.__file = FileReader(filepath)
 
         self.__prepare_buttons_grid()
 
