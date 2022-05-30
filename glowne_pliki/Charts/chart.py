@@ -27,6 +27,13 @@ class CreateChart(FigureCanvasQTAgg):
 
         self.__add_plot(name, self.__dates, self.__price, color)
 
+    def get_start(self, start):
+        self.__start = start
+        print(self.__start)
+
+    def get_end(self, end):
+        self.__end = end
+
     def __add_plot(self, name, dates, price, color):
         print("test")
         self.__dates = dates
@@ -35,8 +42,8 @@ class CreateChart(FigureCanvasQTAgg):
         # if self.boarders == None:
         #     pass
 
-        self.__start = self.__dates.index(self.__dates[0])
-        self.__end = self.__dates.index(self.__dates[-1])
+        # self.__start = self.__dates.index(self.__dates[0])
+        # self.__end = self.__dates.index(self.__dates[-1])
         # print(self.__dates)
         # print(self.__start)
         # print("test2")
@@ -82,6 +89,8 @@ class CreateChart(FigureCanvasQTAgg):
         if self.__axes is None:
             # print(dates)
             self.__axes = self.__fig.add_subplot(111)
+
+
 
 
 class UpdateDataFromSlider:
