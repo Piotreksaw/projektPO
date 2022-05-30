@@ -6,7 +6,7 @@ from matplotlib.figure import Figure
 from matplotlib import pyplot
 from PyQt5.QtGui import QIcon, QPixmap
 
-from projektPO.glowne_pliki.FileReader import FileReader, Country
+from glowne_pliki.FileReader import FileReader, Country
 
 
 class CreateChart(FigureCanvasQTAgg):

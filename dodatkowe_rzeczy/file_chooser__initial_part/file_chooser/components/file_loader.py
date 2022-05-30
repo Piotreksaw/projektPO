@@ -3,8 +3,6 @@ import sys
 
 from PyQt5.QtWidgets import QPushButton, QProgressBar, QFileDialog, QHBoxLayout
 
-from projektPO.dodatkowe_rzeczy.file_chooser__initial_part.file_chooser.components.io import FileReader
-
 
 class FileLoader(QHBoxLayout):
 
@@ -12,7 +10,7 @@ class FileLoader(QHBoxLayout):
         super().__init__()
         self.__selected_filepath = 'none'
         self.__create_all(btn_name)
-        self.selected_filepath = self.get_filepath()
+        #self.selected_filepath = self.get_filepath()
 
     def __create_all(self, btn_name, parent=None):
         self.__file_loader_dialog_btn = self.__create_file_loader_dialog_btn(btn_name)
@@ -33,12 +31,12 @@ class FileLoader(QHBoxLayout):
                                                              current_dir, "CSV (*.csv)",
                                                              options=options)
 
-        # if maybe_selected_file:
-        #
-        # else:
-        #     print("does not work")
+        if self.__maybe_selected_file:
+            print("dziala")
+        else:
+            print("does not work")
 
-    def get_filepath(self):
-        return self.__maybe_selected_file
+    #def get_filepath(self):
+        #return self.__maybe_selected_file
 
 

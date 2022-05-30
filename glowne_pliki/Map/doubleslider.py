@@ -2,8 +2,8 @@ import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QSlider, QGridLayout, QLabel
 from PyQt5.Qt import Qt
 from PyQt5.QtGui import QFont
-from projektPO.glowne_pliki.FileReader import FileReader
-from projektPO.glowne_pliki.Charts.chart import CreateChart
+from glowne_pliki.FileReader import FileReader
+from glowne_pliki.Charts.chart import CreateChart
 
 class DoubleSlider(QWidget):
 
