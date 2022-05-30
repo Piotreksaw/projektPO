@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QPushButton, QGroupBox, QGridLayout
 from text_panel import TextPanel as TP
-from projektPO.dodatkowe_rzeczy.file_chooser__initial_part.file_chooser.components.file_loader import FileLoader
+from dodatkowe_rzeczy.file_chooser__initial_part.file_chooser.components.file_loader import FileLoader
 
 
 class create_button(QPushButton):

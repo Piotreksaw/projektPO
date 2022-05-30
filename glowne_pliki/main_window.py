@@ -13,7 +13,7 @@ from Map.doubleslider import SliderApp
 
 from Charts.chart import CreateChart
 from Map.doubleslider import SliderApp
-from projektPO.dodatkowe_rzeczy.file_chooser__initial_part.file_chooser.components.file_loader import FileLoader
+from dodatkowe_rzeczy.file_chooser__initial_part.file_chooser.components.file_loader import FileLoader
 
 
 class MainWindow(QWidget):
@@ -33,14 +33,14 @@ class MainWindow(QWidget):
         # filepath = klasa do danych
         self.__name = "program czasem działający"
         self.__loader = FileLoader(self.__name)
-        self.__filepath = self.__loader.selected_filepath
+        #self.__filepath = self.__loader.selected_filepath
         self.__chart = CreateChart()
         # self.__slider = SliderApp(self.__chart)
         self.__tabs = Tabs(self.__chart)
         self.__buttons2 = Export_and_something_buttons()
-        self.__button_panel = ButtonsPanel(self.__chart, self.__filepath )
+        self.__button_panel = ButtonsPanel(self.__chart, "eurostat.csv" )
 
-        self.__slider = SliderApp(self.__chart, self.__filepath)
+        self.__slider = SliderApp(self.__chart, "eurostat.csv")
 
 
         main_layout = QGridLayout()
