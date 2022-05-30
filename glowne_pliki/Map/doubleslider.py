@@ -3,17 +3,18 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QSlider, QGridLa
 from PyQt5.Qt import Qt
 from PyQt5.QtGui import QFont
 from projektPO.glowne_pliki.FileReader import FileReader
-from projektPO.glowne_pliki.Charts.chart import UpdateDataFromSlider
+from projektPO.glowne_pliki.Charts.chart import CreateChart
 
 class DoubleSlider(QWidget):
 
-    def __init__(self, parent=None):
+    def __init__(self, chart_panel, parent=None):
         super().__init__(parent)
-
+        self.__chart_panel = CreateChart()
         self.__file = FileReader("eurostat.csv")
         self.__a = self.__file.get_dates()
         self.__min_val = self.__a.index(self.__a[0])
         self.__max_val = self.__a.index(self.__a[-1])
+
 
         self.__create_view()
 
@@ -93,7 +94,8 @@ class DoubleSlider(QWidget):
 
         if value_from > value_to:
             self.__slider_to.setValue(value_from )
-        self.data_pusher()
+        self.__chart_panel.get_start(value_from)
+        # self.data_pusher()
         return value_from
 
 
@@ -105,7 +107,8 @@ class DoubleSlider(QWidget):
         # self.get_current_to_value()
         if value_to < value_from:
             self.__slider_from.setValue(value_to)
-        self.data_pusher()
+        # self.data_pusher()
+        self.__chart_panel.get_start(value_to)
 
     def get_current_from_value(self):
         # print(self.__slider_from.value())
@@ -115,18 +118,19 @@ class DoubleSlider(QWidget):
 
         return self.__slider_to.value()
 
-    def data_pusher(self):
-        min_val = self.get_current_from_value()
-        max_val = self.get_current_to_value()
-
-        self.__update_method(min_val, max_val)
+    # def data_pusher(self):
+    #     min_val = self.get_current_from_value()
+    #     max_val = self.get_current_to_value()
+    #
+    #     self.__update_method(min_val, max_val)
 
 
 
 class SliderApp(QWidget):
 
-    def __init__(self, parent=None):
+    def __init__(self, chart_panel, parent=None):
         super().__init__(parent)
+        self.chart_panel = chart_panel
 
         self.__init_view()
         # self.show()
@@ -144,7 +148,7 @@ class SliderApp(QWidget):
         # self.setCentralWidget(main_widget)
 
     def __add_widgets_to_main_layout(self, main_layout):
-        self.__double_slider_widget = DoubleSlider()
+        self.__double_slider_widget = DoubleSlider(self.chart_panel)
         main_layout.addWidget(self.__double_slider_widget)
 
 

@@ -35,13 +35,13 @@ class MainWindow(QWidget):
         # filepath = klasa do danych
         self.__name = "hej"
         self.__update = UpdateDataFromSlider()
-        self.__slider = SliderApp()
         self.__chart = CreateChart()
+        # self.__slider = SliderApp(self.__chart)
         self.__tabs = Tabs(self.__chart)
         self.__buttons2 = Export_and_something_buttons()
         self.__button_panel = ButtonsPanel(self.__chart)
 
-        self.__slider = SliderApp()
+        self.__slider = SliderApp(self.__chart)
         self.__loader = FileLoader(self.__name)
 
         main_layout = QGridLayout()
