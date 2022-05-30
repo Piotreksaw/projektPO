@@ -33,13 +33,14 @@ class MainWindow(QWidget):
         # filepath = klasa do danych
         self.__name = "program czasem działający"
         self.__loader = FileLoader(self.__name)
+        self.__filepath = self.__loader.selected_filepath
         self.__chart = CreateChart()
         # self.__slider = SliderApp(self.__chart)
         self.__tabs = Tabs(self.__chart)
         self.__buttons2 = Export_and_something_buttons()
-        self.__button_panel = ButtonsPanel(self.__chart, self.__loader.get_filepath)
+        self.__button_panel = ButtonsPanel(self.__chart, self.__filepath )
 
-        self.__slider = SliderApp(self.__chart, self.__loader.get_filepath)
+        self.__slider = SliderApp(self.__chart, self.__filepath)
 
 
         main_layout = QGridLayout()
