@@ -24,6 +24,7 @@ class CreateChart(FigureCanvasQTAgg):
         self.__price = price
 
         self.set_chart()
+        self.__fig.tight_layout()
         self.__add_plot(name, self.__dates, self.__price, color)
 
 
@@ -31,24 +32,19 @@ class CreateChart(FigureCanvasQTAgg):
         # print("test")
         self.__dates = dates
 
-
-
         if self.__start == None and self.__end == None:
             self.__start = self.__dates.index(self.__dates[0])
             self.__end = self.__dates.index(self.__dates[-1]) + 1
-            print(self.__dates)
+            # print(self.__dates)
 
         self.xx = dates[self.__start:self.__end:1]
+        self.xxx = dates[self.__start:self.__end:2]
         self.yy = price[self.__start:self.__end:1]
 
-        print(self.__start)
-        print(self.xx)
-        print(self.__end)
-        print(self.yy)
-        # self.__axes.plot.xticks(xx, yy)
-        # self.__axes.set_xlim([self.__start, self.__end])
+        # self.__axes.set_xticks(self.xxx)
+
         self.__axes.plot(self.xx, self.yy, color, label= name)
-        self.__fig.tight_layout()
+
 
         self.__axes.legend()
 
@@ -62,7 +58,8 @@ class CreateChart(FigureCanvasQTAgg):
     def set_chart(self):
         if self.__axes is None:
             # print(dates)
-            self.__axes = self.__fig.add_subplot(111)
+            self.__fig.add_subplot(111)
+            self.__axes = self.__fig.axes[0]
 
     def get_start(self, start):
         self.__start = start
