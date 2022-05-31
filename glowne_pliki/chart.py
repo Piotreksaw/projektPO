@@ -11,17 +11,19 @@ from file_reader import FileReader
 
 
 class CreateChart(FigureCanvasQTAgg):
-    # Zmienna potrzebna do stworzenia pdf
-    __IMG_FORMAT = "png"
 
     def __init__(self, width = 11, height = 6, dpi = 90):
         self.__fig = Figure(figsize=(width, height), dpi= dpi)
         super().__init__(self.__fig)
 
+        # Zmienna potrzebna do stworzenia pdf
+        __IMG_FORMAT = "png"
+
         self.__axes = None
         self.__start = None
         self.__end = None
 
+    # metoda przetwarzająca wykres na obraz
     def get_img(self):
         img_data = BytesIO()
         self.__fig.savefig(img_data, format=self.__IMG_FORMAT)
@@ -29,6 +31,7 @@ class CreateChart(FigureCanvasQTAgg):
         img_data.seek(seek_offset)
         return img_data
 
+    # funkcja służąca do dodania danych do wykresu
     def add_data_for_chart(self, name, price, dates, color):
         self.__dates = dates
         self.__price = price
@@ -37,7 +40,7 @@ class CreateChart(FigureCanvasQTAgg):
         self.__fig.tight_layout()
         self.__add_plot(name, self.__dates, self.__price, color)
 
-
+    #metoda dodająca wykres
     def __add_plot(self, name, dates, price, color):
         # print("test")
         self.__dates = dates
@@ -48,45 +51,35 @@ class CreateChart(FigureCanvasQTAgg):
             # print(self.__dates)
 
         self.xx = dates[self.__start:self.__end:1]
-        self.xxx = dates[self.__start:self.__end:2]
+        self.new_x_axis = dates[self.__start:self.__end:2]
         self.yy = price[self.__start:self.__end:1]
 
-        # self.__axes.set_xticks(self.xxx)
-
         self.__axes.plot(self.xx, self.yy, color, label= name)
-
-
+        self.__axes.set_xticks(self.new_x_axis)
         self.__axes.legend()
 
         self.draw()
 
-
     def remove_plot(self):
         self.__axes.cla()
 
-
+    # funkcja ustawiająca pole do wykresu
     def set_chart(self):
         if self.__axes is None:
             # print(dates)
             self.__fig.add_subplot(111)
             self.__axes = self.__fig.axes[0]
 
+    # poniższe funkcje zwracają nam początek i koniec
     def get_start(self, start):
         self.__start = start
 
     def get_end(self, end):
         self.__end = end
 
-    def creat_shorter_x_axis(self, xx):
-        self.__new_x = self.xx
-
-
-
-
-
 
 # ta klasa jest niewykorzystywana niestety, ponieważ jej implementacja okazała się bardzo uciążliwa,
-# zamiast niej jest metoda get_start, get_end
+# zamiast niej jest metoda get_start, get_end, zostawiam w celu pokazania innej metody
 class UpdateDataFromSlider:
     def __init__(self):
         pass
