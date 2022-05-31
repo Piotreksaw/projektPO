@@ -27,11 +27,12 @@ class MainWindow(QWidget):
         self.__fileloader = FileLoader(self.__name)
         self.__chart = CreateChart()
         self.__filepath = self.__fileloader.maybe_selected_file
-        print(self.__filepath)
+        # print(self.__filepath)
         self.__buttons = Export_and_something_buttons(self.__chart, self.__fileloader)
 
 
         self.__button_panel = ButtonsPanel(self.__chart, self.__filepath)
+
         self.__slider = SliderApp(self.__chart, self.__filepath)
         self.__tabs = Tabs(self.__chart)
 

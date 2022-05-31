@@ -17,15 +17,17 @@ class CreateChart(FigureCanvasQTAgg):
         super().__init__(self.__fig)
 
         # Zmienna potrzebna do stworzenia pdf
-        __IMG_FORMAT = "png"
+        self.__IMG_FORMAT = "png"
 
         self.__axes = None
         self.__start = None
         self.__end = None
+        self.set_chart()
 
     # metoda przetwarzająca wykres na obraz
     def get_img(self):
         img_data = BytesIO()
+
         self.__fig.savefig(img_data, format=self.__IMG_FORMAT)
         seek_offset = 0
         img_data.seek(seek_offset)
@@ -36,23 +38,26 @@ class CreateChart(FigureCanvasQTAgg):
         self.__dates = dates
         self.__price = price
 
-        self.set_chart()
+
         self.__fig.tight_layout()
         self.__add_plot(name, self.__dates, self.__price, color)
 
     #metoda dodająca wykres
     def __add_plot(self, name, dates, price, color):
 
-        self.__dates = dates
 
         if self.__start == None and self.__end == None:
-            self.__start = self.__dates.index(self.__dates[0])
-            self.__end = self.__dates.index(self.__dates[-1]) + 1
+            self.__start = self.__dates.index(dates[0])
+            self.__end = self.__dates.index(dates[-1]) + 1
 
+        # print(self.__start)
+        # print(self.__end)
 
-        self.xx = dates[self.__start:self.__end:1]
+        self.xx = dates[self.__start:self.__end]
+        print(self.xx)
         self.new_x_axis = dates[self.__start:self.__end:2]
         self.yy = price[self.__start:self.__end:1]
+
 
         self.__axes.plot(self.xx, self.yy, color, label= name)
         self.__axes.set_xticks(self.new_x_axis)
@@ -63,6 +68,8 @@ class CreateChart(FigureCanvasQTAgg):
     # metoda usuwająca wykres niestety na razie usuwa wszystkie wykresy :(
     def remove_plot(self):
         self.__axes.cla()
+
+
 
     # funkcja ustawiająca pole do wykresu
     def set_chart(self):
@@ -76,7 +83,7 @@ class CreateChart(FigureCanvasQTAgg):
         self.__start = start
 
     def get_end(self, end):
-        self.__end = end
+        self.__end = end + 1
 
 
 # ta klasa jest niewykorzystywana niestety, ponieważ jej implementacja okazała się bardzo uciążliwa,
