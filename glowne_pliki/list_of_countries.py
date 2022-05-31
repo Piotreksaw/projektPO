@@ -25,11 +25,10 @@ class AddingButton(QPushButton):
         name = self.text()
         if self.__status == 0:
             self.__create_and_add_icon_to_btn()
+            self.__status = 1
             self.__chart_panel.add_data_for_chart(name, self.__country.get_all_values_for_country(),
                                                   self.__file.get_dates(),
                                                   self.__color)
-
-            self.__status = 1
 
         elif self.__status == 1:
             self.__create_and_add_icon_to_btn()
@@ -83,6 +82,8 @@ class ButtonsPanel(QGroupBox):
         self.__prepare_buttons_grid()
 
 
+
+
     def get_filepath(self, filepath):
         self.__filepath = filepath
 
@@ -131,6 +132,15 @@ class ButtonsPanel(QGroupBox):
         self.__chart_panel.remove_plot()
         for btn in self.__buttons:
             if btn.get_status() == 1:
-                btn.update_chart_2()
+                btn.update_chart_backup()
+
+    def changing_boundaries(self):
+        self.__chart_panel.remove_plot()
+        for btn in self.__buttons:
+            if btn.get_status() == 1:
+                btn.update_chart_backup()
+
+
+
 
 
