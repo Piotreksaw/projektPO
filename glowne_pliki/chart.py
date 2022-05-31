@@ -7,7 +7,7 @@ from matplotlib.figure import Figure
 from matplotlib import pyplot
 from PyQt5.QtGui import QIcon, QPixmap
 
-from file_reader import FileReader
+
 
 
 class CreateChart(FigureCanvasQTAgg):
@@ -42,13 +42,13 @@ class CreateChart(FigureCanvasQTAgg):
 
     #metoda dodająca wykres
     def __add_plot(self, name, dates, price, color):
-        # print("test")
+
         self.__dates = dates
 
         if self.__start == None and self.__end == None:
             self.__start = self.__dates.index(self.__dates[0])
             self.__end = self.__dates.index(self.__dates[-1]) + 1
-            # print(self.__dates)
+
 
         self.xx = dates[self.__start:self.__end:1]
         self.new_x_axis = dates[self.__start:self.__end:2]
@@ -60,6 +60,7 @@ class CreateChart(FigureCanvasQTAgg):
 
         self.draw()
 
+    # metoda usuwająca wykres niestety na razie usuwa wszystkie wykresy :(
     def remove_plot(self):
         self.__axes.cla()
 

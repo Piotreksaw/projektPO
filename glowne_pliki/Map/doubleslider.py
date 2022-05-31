@@ -14,21 +14,19 @@ class DoubleSlider(QWidget):
         self.__a = self.__file.get_dates()
         print(self.__a)
         self.__min_val = self.__a.index(self.__a[0])
-        print(self.__min_val)
         self.__max_val = self.__a.index(self.__a[-1])
-        print(self.__max_val)
         self.__create_view()
 
     # klasy tworzące okno pokazujące obecne daty wybrane przez użytkownika
     def __create_label1(self):
         label1 = QLabel()
-        label1.setFont(QFont("Sanserif", 13))
+        label1.setFont(QFont("Sanserif", 12))
         label1.setText(str(self.__a[self.__min_val]))
         return label1
 
     def __create_label2(self):
         label2 = QLabel()
-        label2.setFont(QFont("Sanserif", 13))
+        label2.setFont(QFont("Sanserif", 12))
         label2.setText((str(self.__a[self.__max_val])))
         return label2
 
@@ -88,6 +86,7 @@ class DoubleSlider(QWidget):
 
         if value_from > value_to:
             self.__slider_to.setValue(value_from )
+
         self.__chart_panel.get_start(value_from)
         return value_from
 
@@ -100,7 +99,9 @@ class DoubleSlider(QWidget):
         # self.get_current_to_value()
         if value_to < value_from:
             self.__slider_from.setValue(value_to)
+
         self.__chart_panel.get_end(value_to)
+        return value_to
 
 
 class SliderApp(QWidget):
