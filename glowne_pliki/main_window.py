@@ -13,7 +13,7 @@ class MainWindow(QWidget):
         super().__init__()
         width = 1500
         height = 800
-        name = "program"
+        name = "Energio-Map"
 
         self.resize(width, height)
         self.setWindowTitle(name)
@@ -21,21 +21,20 @@ class MainWindow(QWidget):
         self.__prepare_window()
 
     def __prepare_window(self):
-        # filepath = klasa do danych
+
         self.__name = "program czasem działający"
-        # self.__loader = FileLoader(self.__name)
-        # self.__filepath = self.__loader.selected_filepath
+
         self.__fileloader = FileLoader(self.__name)
         self.__chart = CreateChart()
         self.__filepath = self.__fileloader.maybe_selected_file
         print(self.__filepath)
         self.__buttons = Export_and_something_buttons(self.__chart, self.__fileloader)
 
-        # self.__readfile = FileReader(self.__filepath)
+
         self.__button_panel = ButtonsPanel(self.__chart, self.__filepath)
         self.__slider = SliderApp(self.__chart, self.__filepath)
         self.__tabs = Tabs(self.__chart)
-        # self.__slider = SliderApp(self.__chart, self.__filepath)
+
         self.__adding_widgets()
 
     def __adding_widgets(self):
