@@ -6,6 +6,7 @@ from list_of_countries import ButtonsPanel
 from projektPO.glowne_pliki.chart import CreateChart
 from Map.doubleslider import SliderApp
 from file_loader import FileLoader
+from file_reader import FileReader
 
 class MainWindow(QWidget):
     def __init__(self):
@@ -24,20 +25,27 @@ class MainWindow(QWidget):
         self.__name = "program czasem działający"
         # self.__loader = FileLoader(self.__name)
         # self.__filepath = self.__loader.selected_filepath
-        self.__filepath = FileLoader(self.__name)
         self.__chart = CreateChart()
+        self.__fileloader = FileLoader(self.__name)
+        self.__filepath = self.__fileloader.maybe_selected_file
+        print(self.__filepath)
+        self.__buttons = Export_and_something_buttons(self.__chart, self.__fileloader)
+
+        # self.__readfile = FileReader(self.__filepath)
         self.__button_panel = ButtonsPanel(self.__chart, self.__filepath)
-        self.__buttons2 = Export_and_something_buttons(self.__chart, self.__filepath)
-        # self.__slider = SliderApp(self.__chart)
-        self.__tabs = Tabs(self.__chart)
         self.__slider = SliderApp(self.__chart, self.__filepath)
+        self.__tabs = Tabs(self.__chart)
+        # self.__slider = SliderApp(self.__chart, self.__filepath)
+        self.__adding_widgets()
+
+    def __adding_widgets(self):
 
         main_layout = QGridLayout()
         main_layout.addWidget(self.__tabs, 0, 0, 1, 9)
-        main_layout.addWidget(self.__buttons2, 2, 0, 1, 9)
+        main_layout.addWidget(self.__buttons, 2, 0, 1, 9)
         main_layout.addWidget(self.__button_panel, 0, 10, 3, 2)
         main_layout.addWidget(self.__slider, 1, 0, 1, 9)
-        # main_layout.addLayout(self.__loader, 3, 0)
+        main_layout.addLayout(self.__fileloader, 3, 0)
 
         self.setLayout(main_layout)
         self.show()

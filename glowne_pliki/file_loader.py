@@ -10,7 +10,9 @@ class FileLoader(QHBoxLayout):
     def __init__(self, btn_name):
         super().__init__()
         self.__selected_filepath = 'none'
+
         self.__create_all(btn_name)
+        self.maybe_selected_file = self.__choose_and_read_file()
 
 
     def __create_all(self, btn_name, parent=None):
@@ -38,8 +40,17 @@ class FileLoader(QHBoxLayout):
             self.maybe_selected_file = self.__splitted
 
 
-            print("dziala")
+
+
+
+            # print("dziala")
+            # print(self.maybe_selected_file)
+            return self.maybe_selected_file
 
         else:
             print("does not work")
+
+
+
+
 
