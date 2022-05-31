@@ -7,7 +7,7 @@ from projektPO.glowne_pliki.chart import CreateChart
 
 class DoubleSlider(QWidget):
 
-    def __init__(self, chart_panel, filepath, parent=None):
+    def __init__(self, chart_panel, filepath, list_of_buttons,  parent=None):
         super().__init__(parent)
         self.__chart_panel = chart_panel
         self.__file = FileReader(filepath)
@@ -15,6 +15,7 @@ class DoubleSlider(QWidget):
         print(self.__a)
         self.__min_val = self.__a.index(self.__a[0])
         self.__max_val = self.__a.index(self.__a[-1])
+        self.list_of_buttons = list_of_buttons
         self.__create_view()
 
     # klasy tworzące okno pokazujące obecne daty wybrane przez użytkownika
@@ -88,6 +89,7 @@ class DoubleSlider(QWidget):
             self.__slider_to.setValue(value_from )
 
         self.__chart_panel.get_start(value_from)
+        self.list_of_buttons.changing_boundaries()
         return value_from
 
 
@@ -101,16 +103,17 @@ class DoubleSlider(QWidget):
             self.__slider_from.setValue(value_to)
 
         self.__chart_panel.get_end(value_to)
+        self.list_of_buttons.changing_boundaries()
         return value_to
 
 
 class SliderApp(QWidget):
 
-    def __init__(self, chart_panel, filepath,  parent=None):
+    def __init__(self, chart_panel, filepath, list_of_buttons, parent=None):
         super().__init__(parent)
         self.chart_panel = chart_panel
         self.__filepath = filepath
-
+        self.list_of_buttons = list_of_buttons
         self.__init_view()
         # self.show()
 
@@ -126,5 +129,5 @@ class SliderApp(QWidget):
         # self.setCentralWidget(main_widget)
 
     def __add_widgets_to_main_layout(self, main_layout):
-        self.__double_slider_widget = DoubleSlider(self.chart_panel, self.__filepath)
+        self.__double_slider_widget = DoubleSlider(self.chart_panel, self.__filepath, self.list_of_buttons)
         main_layout.addWidget(self.__double_slider_widget)

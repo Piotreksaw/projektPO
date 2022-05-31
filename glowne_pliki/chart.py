@@ -22,7 +22,7 @@ class CreateChart(FigureCanvasQTAgg):
         self.__axes = None
         self.__start = None
         self.__end = None
-        self.set_chart()
+
 
     # metoda przetwarzająca wykres na obraz
     def get_img(self):
@@ -37,7 +37,7 @@ class CreateChart(FigureCanvasQTAgg):
     def add_data_for_chart(self, name, price, dates, color):
         self.__dates = dates
         self.__price = price
-
+        self.set_chart()
 
         self.__fig.tight_layout()
         self.__add_plot(name, self.__dates, self.__price, color)
@@ -50,11 +50,9 @@ class CreateChart(FigureCanvasQTAgg):
             self.__start = self.__dates.index(dates[0])
             self.__end = self.__dates.index(dates[-1]) + 1
 
-        # print(self.__start)
-        # print(self.__end)
 
         self.xx = dates[self.__start:self.__end]
-        print(self.xx)
+
         self.new_x_axis = dates[self.__start:self.__end:2]
         self.yy = price[self.__start:self.__end:1]
 
@@ -65,18 +63,19 @@ class CreateChart(FigureCanvasQTAgg):
 
         self.draw()
 
-    # metoda usuwająca wykres niestety na razie usuwa wszystkie wykresy :(
+    # metoda usuwająca wykres
     def remove_plot(self):
-        self.__axes.cla()
-
-
+        self.__fig.clf()
+        self.__axes = None
+        self.set_chart()
 
     # funkcja ustawiająca pole do wykresu
     def set_chart(self):
         if self.__axes is None:
             # print(dates)
-            self.__fig.add_subplot(111)
-            self.__axes = self.__fig.axes[0]
+            self.__axes = self.__fig.add_subplot(111)
+            # self.__axes = self.__fig.axes[0]
+            self.__axes.set_title("Wykres zależności cen energii elektrycznej w danym zakresie ")
 
     # poniższe funkcje zwracają nam początek i koniec
     def get_start(self, start):
