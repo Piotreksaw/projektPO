@@ -12,7 +12,6 @@ class DoubleSlider(QWidget):
         self.__chart_panel = chart_panel
         self.__file = FileReader(filepath)
         self.__a = self.__file.get_dates()
-        print(self.__a)
         self.__min_val = self.__a.index(self.__a[0])
         self.__max_val = self.__a.index(self.__a[-1])
         self.list_of_buttons = list_of_buttons

@@ -55,7 +55,7 @@ class Country:
         values_for_country = list(self.__data.iloc[country_num])
         values_for_country = values_for_country[1:]
         values_for_country = self.__change_from_str_to_float(values_for_country)
-        # print(values_for_country)
+
         return values_for_country
 
     # Funkcja zamieniająca wartości ze stringa do floata
@@ -68,7 +68,7 @@ class Country:
                     new_list.append(v)
             else:
                 new_list.append(v)
-        # print(new_list)
+
         values_for_country = new_list
         return values_for_country
 
@@ -89,9 +89,3 @@ class Country:
         date_num = self.__list_of_dates.index(date) + 1
         return date_num
 
-
-if __name__ == "__main__":
-    test = FileReader("eurostat.csv")
-    poland = Country("Poland", test)
-    poland.get_country_value_from_date("2009-S1")
-    print(poland.get_all_values_for_country())

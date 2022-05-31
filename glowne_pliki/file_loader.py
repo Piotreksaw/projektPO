@@ -39,16 +39,10 @@ class FileLoader(QHBoxLayout):
             self.__splitted = self.__splitted[-1]
             self.maybe_selected_file = self.__splitted
 
-
-
-
-
-            # print("dziala")
-            # print(self.maybe_selected_file)
             return self.maybe_selected_file
 
         else:
-            print("does not work")
+            print("wczytano zły format pliku")
 
 
 
