@@ -17,22 +17,16 @@ class MainWindow(QWidget):
 
         self.resize(width, height)
         self.setWindowTitle(name)
-        # self.tab_widget = Tabs(self)
         self.__prepare_window()
 
     def __prepare_window(self):
 
         self.__name = "program czasem działający"
-
         self.__fileloader = FileLoader(self.__name)
         self.__chart = CreateChart()
         self.__filepath = self.__fileloader.maybe_selected_file
-
         self.__buttons = Export_and_something_buttons(self.__chart, self.__fileloader)
-
-
         self.__button_panel = ButtonsPanel(self.__chart, self.__filepath)
-
         self.__slider = SliderApp(self.__chart, self.__filepath, self.__button_panel)
         self.__tabs = Tabs(self.__chart)
 
@@ -54,7 +48,6 @@ class MainWindow(QWidget):
 def main():
     app = QApplication([])
     main_window = MainWindow()
-
     sys.exit(app.exec_())
 
 

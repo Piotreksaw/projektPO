@@ -90,7 +90,6 @@ class ButtonsPanel(QGroupBox):
     def __get_num_of_countries(self):
         list_of = self.__file.get_countries()
         num_of_countires = len(list_of)
-        # print(num_of_countires)
         return num_of_countires
 
     def __prepare_buttons_grid(self):
@@ -124,9 +123,6 @@ class ButtonsPanel(QGroupBox):
         color = self.__Colors[color_id]
 
         return color
-
-    # def return_buttons_list(self):
-    #     print(self.__buttons)
 
     def removing_plot(self):
         self.__chart_panel.remove_plot()
