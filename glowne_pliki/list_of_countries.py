@@ -7,19 +7,21 @@ from file_reader import Country, FileReader
 
 
 class AddingButton(QPushButton):
-    def __init__(self, country_name, color, chart_panel, filepath):
+    def __init__(self, country_name, color, chart_panel, filepath, buttons_list):
         super().__init__(country_name)
         self.__color = color
         self.__file = FileReader(filepath)
         self.__country = Country(country_name, self.__file)
         self.__chart_panel = chart_panel
         self.__status = 0
+        self.buttons_list = buttons_list
         # print(country_name)
         # print(self.__file.get_dates())
         # print(self.__country.get_all_values_for_country())
-        self.clicked.connect(self.__update_chart)
+        self.clicked.connect(self.update_chart)
 
-    def __update_chart(self):
+
+    def update_chart(self):
         name = self.text()
         if self.__status == 0:
             self.__create_and_add_icon_to_btn()
@@ -31,15 +33,21 @@ class AddingButton(QPushButton):
 
         elif self.__status == 1:
             self.__create_and_add_icon_to_btn()
-            self.__chart_panel.remove_plot()
-
             self.__status = 0
+            self.buttons_list.removing_plot()
+
+    def update_chart_backup(self):
+        name = self.text()
+        self.__chart_panel.add_data_for_chart(name, self.__country.get_all_values_for_country(),
+                                            self.__file.get_dates(),
+                                            self.__color)
 
     def get_status(self):
         return self.__status
 
-    # def remove_plot(self):
-    #     pass
+
+
+
 
     def __create_and_add_icon_to_btn(self, width=40, height=5):
         if self.__status == 0:
@@ -107,7 +115,7 @@ class ButtonsPanel(QGroupBox):
         for i in range(num_of_buttons):
             colour = self.__find_rand_color()
 
-            btn = AddingButton(self.__file.get_countries()[i], colour, self.__chart_panel, self.__filepath)
+            btn = AddingButton(self.__file.get_countries()[i], colour, self.__chart_panel, self.__filepath, self)
             self.__buttons.append(btn)
 
     def __find_rand_color(self):
@@ -115,3 +123,14 @@ class ButtonsPanel(QGroupBox):
         color = self.__Colors[color_id]
 
         return color
+
+    # def return_buttons_list(self):
+    #     print(self.__buttons)
+
+    def removing_plot(self):
+        self.__chart_panel.remove_plot()
+        for btn in self.__buttons:
+            if btn.get_status() == 1:
+                btn.update_chart_2()
+
+
