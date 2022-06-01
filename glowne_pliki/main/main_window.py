@@ -6,6 +6,7 @@ from glowne_pliki.main.list_of_countries import ButtonsPanel
 from glowne_pliki.Charts.chart import CreateChart
 from glowne_pliki.main.doubleslider import SliderApp
 from glowne_pliki.file_loader.file_loader import FileLoader
+from glowne_pliki.Map.geo_example import MapApp
 
 
 # klasa tworząca główne okno
@@ -25,11 +26,12 @@ class MainWindow(QWidget):
         self.__name = "Select file to read"
         self.__fileloader = FileLoader(self.__name)
         self.__chart = CreateChart()
+        self.__map = MapApp("dane_do_mapy.geojson")
         self.__filepath = self.__fileloader.maybe_selected_file
         self.__buttons = Export_and_something_buttons(self.__chart, self.__fileloader)
         self.__button_panel = ButtonsPanel(self.__chart, self.__filepath)
         self.__slider = SliderApp(self.__chart, self.__filepath, self.__button_panel)
-        self.__tabs = Tabs(self.__chart)
+        self.__tabs = Tabs(self.__chart, self.__map)
         # wywołanie metody dodającej widgety
         self.__adding_widgets()
 
