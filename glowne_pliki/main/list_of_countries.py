@@ -5,6 +5,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from glowne_pliki.main.file_reader import Country, FileReader
 
+
 # klasa tworząca obiekt przycisku
 class AddingButton(QPushButton):
     def __init__(self, country_name, color, chart_panel, filepath, buttons_list):
@@ -38,7 +39,8 @@ class AddingButton(QPushButton):
             self.__status = 0
             self.buttons_list.removing_plot()
 
-    # metoda służącą do udpatowania wykresu, mianowicie ona dostaje listę przycisków które są kliknięte i dodaje dla nich wykres
+    # metoda służącą do udpatowania wykresu, mianowicie ona dostaje listę przycisków które są kliknięte i
+    # dodaje dla nich wykres
     def update_chart_backup(self):
         name = self.text()
         self.__chart_panel.add_data_for_chart(name, self.__country.get_all_values_for_country(),

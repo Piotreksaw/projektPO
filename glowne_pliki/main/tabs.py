@@ -1,8 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QTabWidget
 
 
-# from PyQt5 import QtCore
-
 # klasa służąca do stworzenia kart do przełączania się pomiędzy mapą a wykresem
 class Tabs(QWidget):
     def __init__(self, chart, map):
@@ -21,9 +19,11 @@ class Tabs(QWidget):
         self.tabs.addTab(self.tab1, "Wykres")
         self.tabs.addTab(self.tab2, "Mapa")
         self.tab1.layout = QVBoxLayout()
+        # ustawienie w pierwszej karcie wykeresu
         self.tab1.layout.addWidget(self.__chart)
         self.tab1.setLayout(self.tab1.layout)
         self.tab2.layout = QVBoxLayout()
+        # ustawienie w drugiej karcie mapy
         self.tab2.layout.addWidget(self.__map)
         self.tab2.setLayout(self.tab2.layout)
         self.layout.addWidget(self.tabs)

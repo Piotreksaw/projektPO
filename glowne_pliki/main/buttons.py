@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QGroupBox, QGridLayout
 from text_panel import TextPanel as TP
 from glowne_pliki.pdf_packet.pdf_save_btn import PdfSaveButton
 
+
 # klasa tworząca ukłąd przycisków do wczytania pliku i eksportowania wykresu do pdfa
 class Export_and_something_buttons(QGroupBox):
     def __init__(self, chart, fileloader):
