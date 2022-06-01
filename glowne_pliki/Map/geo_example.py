@@ -38,7 +38,7 @@ class MapChart(FigureCanvasQTAgg):
         self.__fig.canvas.draw()
 
     def __set_axis_lim(self):
-        self.__stdout_red("Warning! Setting axis lim!")
+
         self.__ax.set_xlim([-3 * 1e6, 6 * 1e6])
         self.__ax.set_ylim([0.25 * 1e7, 1.2 * 1e7])
 
@@ -84,8 +84,8 @@ class MapApp(QMainWindow):
         self.__create_chart()
 
     def __create_chart(self):
-        chart_widget = MapChart(self.__path_to_nuts_data)
-        self.setCentralWidget(chart_widget)
+        self.chart_widget = MapChart(self.__path_to_nuts_data)
+        self.setCentralWidget(self.chart_widget)
 
 
 

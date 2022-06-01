@@ -42,7 +42,7 @@ class MainWindow(QWidget):
         main_layout.addWidget(self.__buttons, 2, 0, 1, 9)
         main_layout.addWidget(self.__button_panel, 0, 10, 3, 2)
         main_layout.addWidget(self.__slider, 1, 0, 1, 9)
-        main_layout.addLayout(self.__fileloader, 3, 0)
+        # main_layout.addLayout(self.__fileloader, 3, 0)
 
         self.setLayout(main_layout)
         self.show()
