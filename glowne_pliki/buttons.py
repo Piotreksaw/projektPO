@@ -26,10 +26,7 @@ class Export_and_something_buttons(QGroupBox):
     def __create_text_button(self):
 
         self.__pdf_save_btn = PdfSaveButton("Save to PDF", self.__chart)
-        # self.__file_loader_button = FileLoader("Select file")
         self.__file_loader_button = self.__filepath
-
-        # self.conne
         self.__text_panel = TP()
 
     def return_filepath(self):

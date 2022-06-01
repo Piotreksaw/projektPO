@@ -72,7 +72,7 @@ class CreateChart(FigureCanvasQTAgg):
     # funkcja ustawiająca pole do wykresu
     def set_chart(self):
         if self.__axes is None:
-            # print(dates)
+
             self.__axes = self.__fig.add_subplot(111)
             # self.__axes = self.__fig.axes[0]
             self.__axes.set_title("Wykres zależności cen energii elektrycznej w danym zakresie ")
@@ -95,8 +95,7 @@ class UpdateDataFromSlider:
     def push_data_to_chart(self, start, end):
         self.__start = start
         self.__end = end
-        # print(self.__start)
-        # print(self.__end)
+
         self.new_boarders = [self.__start, self.__end]
 
 
