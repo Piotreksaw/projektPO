@@ -2,12 +2,12 @@ import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QSlider, QGridLayout, QLabel
 from PyQt5.Qt import Qt
 from PyQt5.QtGui import QFont
-from projektPO.glowne_pliki.file_reader import FileReader
-from projektPO.glowne_pliki.chart import CreateChart
+from file_reader import FileReader
+
 
 class DoubleSlider(QWidget):
 
-    def __init__(self, chart_panel, filepath, list_of_buttons,  parent=None):
+    def __init__(self, chart_panel, filepath, list_of_buttons, parent=None):
         super().__init__(parent)
         self.__chart_panel = chart_panel
         self.list_of_buttons = list_of_buttons
@@ -83,7 +83,7 @@ class DoubleSlider(QWidget):
         self.__label1.setText((str(self.__a[value_from])))
 
         if value_from > value_to:
-            self.__slider_to.setValue(value_from )
+            self.__slider_to.setValue(value_from)
 
         # wywołanie metody wykresu zwracająca początek przedziału czasu dla wykresu
         self.__chart_panel.get_start(value_from)
@@ -91,7 +91,6 @@ class DoubleSlider(QWidget):
         self.list_of_buttons.changing_boundaries()
 
         return value_from
-
 
     def __handle_to_change(self):
         value_from = self.__slider_from.value()
@@ -115,11 +114,8 @@ class SliderApp(QWidget):
         self.__filepath = filepath
         self.list_of_buttons = list_of_buttons
         self.__init_view()
-        # self.show()
 
     def __init_view(self):
-
-
         main_layout = QGridLayout()
         main_widget = QWidget(self)
         main_widget.setLayout(main_layout)
