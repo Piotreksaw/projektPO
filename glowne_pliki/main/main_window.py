@@ -6,7 +6,7 @@ from glowne_pliki.main.list_of_countries import ButtonsPanel
 from glowne_pliki.Charts.chart import CreateChart
 from glowne_pliki.main.doubleslider import SliderApp
 from glowne_pliki.file_loader.file_loader import FileLoader
-from glowne_pliki.Map.geo_example import MapApp
+from glowne_pliki.Map.map import MapApp
 
 
 # klasa tworząca główne okno
