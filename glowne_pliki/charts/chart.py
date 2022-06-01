@@ -63,7 +63,7 @@ class CreateChart(FigureCanvasQTAgg):
         if self.__axes is None:
             self.__axes = self.__fig.add_subplot(111)
             # self.__axes = self.__fig.axes[0]
-            self.__axes.set_title("Wykres zależności cen energii elektrycznej w danym zakresie ")
+            self.__axes.set_title("Wykres cen energii elektrycznej")
 
     # poniższe funkcje zwracają nam początek i koniec
     def get_start(self, start):
