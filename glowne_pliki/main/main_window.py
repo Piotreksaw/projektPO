@@ -1,11 +1,12 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout
-from buttons import Export_and_something_buttons
+from glowne_pliki.main.buttons import Export_and_something_buttons
 from tabs import Tabs
-from list_of_countries import ButtonsPanel
-from projektPO.glowne_pliki.chart import CreateChart
-from Map.doubleslider import SliderApp
-from file_loader import FileLoader
+from glowne_pliki.main.list_of_countries import ButtonsPanel
+from glowne_pliki.charts.chart import CreateChart
+from glowne_pliki.main.doubleslider import SliderApp
+from glowne_pliki.file_loader.file_loader import FileLoader
+
 
 # klasa tworząca główne okno
 class MainWindow(QWidget):
@@ -14,15 +15,14 @@ class MainWindow(QWidget):
         width = 1500
         height = 800
         name = "Energio-Map"
-
+        # Nadanie wielkości dla okna oraz tytułu
         self.resize(width, height)
         self.setWindowTitle(name)
         self.__prepare_window()
 
     # metoda tworząca obiekty do dodania do obszaru
     def __prepare_window(self):
-
-        self.__name = "Wybierz plik do wczytania"
+        self.__name = "Select file to read"
         self.__fileloader = FileLoader(self.__name)
         self.__chart = CreateChart()
         self.__filepath = self.__fileloader.maybe_selected_file
@@ -35,7 +35,6 @@ class MainWindow(QWidget):
 
     # metoda służąca do dodania widgetów do obszaru
     def __adding_widgets(self):
-
         main_layout = QGridLayout()
         main_layout.addWidget(self.__tabs, 0, 0, 1, 9)
         main_layout.addWidget(self.__buttons, 2, 0, 1, 9)
@@ -45,6 +44,7 @@ class MainWindow(QWidget):
 
         self.setLayout(main_layout)
         self.show()
+
 
 # metoda wywołująca główne okno, miłe puszczenie oczka do programistów C
 def main():

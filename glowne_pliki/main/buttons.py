@@ -1,7 +1,6 @@
-from PyQt5.QtWidgets import QPushButton, QGroupBox, QGridLayout
+from PyQt5.QtWidgets import QGroupBox, QGridLayout
 from text_panel import TextPanel as TP
-from file_loader import FileLoader
-from pdf_save_btn import PdfSaveButton
+from glowne_pliki.pdf_packet.pdf_save_btn import PdfSaveButton
 
 
 class Export_and_something_buttons(QGroupBox):

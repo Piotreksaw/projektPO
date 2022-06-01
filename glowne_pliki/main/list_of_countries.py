@@ -3,7 +3,7 @@ from PIL import Image, ImageDraw
 from PIL.ImageQt import ImageQt
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from file_reader import Country, FileReader
+from glowne_pliki.main.file_reader import Country, FileReader
 
 # klasa tworząca obiekt przycisku
 class AddingButton(QPushButton):

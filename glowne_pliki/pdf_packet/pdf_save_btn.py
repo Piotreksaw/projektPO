@@ -2,7 +2,7 @@ import os
 import sys
 from PyQt5.QtWidgets import QPushButton, QFileDialog
 from reportlab.lib.utils import ImageReader
-from pdf_generator import PdfReportGenerator
+from glowne_pliki.pdf_packet.pdf_generator import PdfReportGenerator
 
 
 # klasa odpowiedzialna za stworzenie przycsku do stworzenia pdfa z wykresem
@@ -29,8 +29,7 @@ class PdfSaveButton(QPushButton):
         if filename:
             self.__pdf_generator.create_and_save_report(img, filename)
         else:
-            print("nie wybrano lokalizacji")
-            return
+            pass
 
     #  metoda która otwieira okno do wybrania lokalizacji i zwraca nazwę pliku nadaną przez użytkownika
     def __prepare_file_chooser(self):
