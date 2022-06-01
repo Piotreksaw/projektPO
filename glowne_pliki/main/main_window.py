@@ -7,6 +7,8 @@ from glowne_pliki.Charts.chart import CreateChart
 from glowne_pliki.main.doubleslider import SliderApp
 from glowne_pliki.file_loader.file_loader import FileLoader
 from glowne_pliki.Map.map import MapApp
+from PyQt5 import QtGui
+
 
 
 # klasa tworząca główne okno
@@ -16,9 +18,11 @@ class MainWindow(QWidget):
         width = 1500
         height = 800
         name = "Energio-Map"
+
         # Nadanie wielkości dla okna oraz tytułu
         self.resize(width, height)
         self.setWindowTitle(name)
+        self.setWindowIcon(QtGui.QIcon("lightning.jpg"))
         self.__prepare_window()
 
     # metoda tworząca obiekty do dodania do obszaru
