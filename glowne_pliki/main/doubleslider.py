@@ -56,10 +56,12 @@ class DoubleSlider(QWidget):
     def __create_slider_from(self):
 
         slider = QSlider(Qt.Horizontal)
+        # usawienie wartości minimalnych i maksymalnych
         slider.setMinimum(self.__min_val)
         slider.setMaximum(self.__max_val)
         slider.setTickInterval(1)
         slider.setTickPosition(QSlider.TicksBelow)
+        # ustawienie początkowe slidera na pozycje początkową
         slider.setValue(self.__min_val)
         # klinięcie powoduje zmianę wartości używanego indeksu slidera
         slider.valueChanged.connect(self.__handle_from_change)
@@ -79,7 +81,6 @@ class DoubleSlider(QWidget):
     def __handle_from_change(self):
         value_from = self.__slider_from.value()
         value_to = self.__slider_to.value()
-
         self.__label1.setText((str(self.__a[value_from])))
 
         if value_from > value_to:
@@ -95,13 +96,15 @@ class DoubleSlider(QWidget):
     def __handle_to_change(self):
         value_from = self.__slider_from.value()
         value_to = self.__slider_to.value()
-
+        # ustawienie napisu obok slidera i aktualizcja go
         self.__label2.setText(str(self.__a[value_to]))
-        # self.get_current_to_value()
+
         if value_to < value_from:
             self.__slider_from.setValue(value_to)
 
+        # metoda wykresu która zwraca koniec przedziłu dla wykresu
         self.__chart_panel.get_end(value_to)
+        # metoda listy przycisków która po przesunieciu slidera zaktualizuje pole wykresu
         self.list_of_buttons.changing_boundaries()
         return value_to
 
@@ -110,9 +113,11 @@ class SliderApp(QWidget):
 
     def __init__(self, chart_panel, filepath, list_of_buttons, parent=None):
         super().__init__(parent)
+        # wywołanie kreatorów
         self.chart_panel = chart_panel
         self.__filepath = filepath
         self.list_of_buttons = list_of_buttons
+        # wywołanie układ
         self.__init_view()
 
     def __init_view(self):
@@ -121,9 +126,10 @@ class SliderApp(QWidget):
         main_widget.setLayout(main_layout)
 
         self.__add_widgets_to_main_layout(main_layout)
+        # ustawienie końcowe układu
         self.setLayout(main_layout)
-        # self.setCentralWidget(main_widget)
 
+    # metoda dodająca widget stworzony w klasie DoubleSlider tworząca układ
     def __add_widgets_to_main_layout(self, main_layout):
         self.__double_slider_widget = DoubleSlider(self.chart_panel, self.__filepath, self.list_of_buttons)
         main_layout.addWidget(self.__double_slider_widget)

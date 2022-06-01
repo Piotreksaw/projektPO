@@ -88,10 +88,4 @@ class MapApp(QMainWindow):
         self.setCentralWidget(chart_widget)
 
 
-if __name__ == "__main__":
-    app = QApplication([])
-    path_to_data = "dane_do_mapy.geojson"
 
-    mapApp = MapApp(path_to_data)
-
-    sys.exit(app.exec_())
