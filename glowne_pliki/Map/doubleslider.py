@@ -10,11 +10,14 @@ class DoubleSlider(QWidget):
     def __init__(self, chart_panel, filepath, list_of_buttons,  parent=None):
         super().__init__(parent)
         self.__chart_panel = chart_panel
+        self.list_of_buttons = list_of_buttons
         self.__file = FileReader(filepath)
+
+        # wywołanie listy dat która zostanie przekazana dalej do przycisków
         self.__a = self.__file.get_dates()
         self.__min_val = self.__a.index(self.__a[0])
         self.__max_val = self.__a.index(self.__a[-1])
-        self.list_of_buttons = list_of_buttons
+
         self.__create_view()
 
     # klasy tworzące okno pokazujące obecne daty wybrane przez użytkownika
@@ -30,28 +33,26 @@ class DoubleSlider(QWidget):
         label2.setText((str(self.__a[self.__max_val])))
         return label2
 
-
-    # klasa tworząca cały widok slidera
+    # metoda tworząca tworząca obiekty
     def __create_view(self):
         self.__slider_from = self.__create_slider_from()
         self.__slider_to = self.__create_slider_to()
         self.__label1 = self.__create_label1()
         self.__label2 = self.__create_label2()
+        # wywołanie metody tworzącej układ
         self.__create_layout()
 
-
-
-
+    # metoda tworząca układ z obiektów powyżej stworzonych
     def __create_layout(self):
         layout = QGridLayout()
-        layout.addWidget(self.__slider_from,0,0)
-        layout.addWidget(self.__slider_to,1,0)
-        layout.addWidget(self.__label1,0,1)
-        layout.addWidget(self.__label2,1,1)
+        layout.addWidget(self.__slider_from, 0, 0)
+        layout.addWidget(self.__slider_to, 1, 0)
+        layout.addWidget(self.__label1, 0, 1)
+        layout.addWidget(self.__label2, 1, 1)
 
         self.setLayout(layout)
 
-
+    # metody tworzące slider
     def __create_slider_from(self):
 
         slider = QSlider(Qt.Horizontal)
@@ -59,10 +60,9 @@ class DoubleSlider(QWidget):
         slider.setMaximum(self.__max_val)
         slider.setTickInterval(1)
         slider.setTickPosition(QSlider.TicksBelow)
-
         slider.setValue(self.__min_val)
+        # klinięcie powoduje zmianę wartości używanego indeksu slidera
         slider.valueChanged.connect(self.__handle_from_change)
-
         return slider
 
     def __create_slider_to(self):
@@ -71,13 +71,11 @@ class DoubleSlider(QWidget):
         slider.setMaximum(self.__max_val)
         slider.setTickInterval(1)
         slider.setTickPosition(QSlider.TicksBelow)
-
         slider.setValue(self.__max_val)
-
         slider.valueChanged.connect(self.__handle_to_change)
-
         return slider
 
+    # metoda odpowiadająca za zaktualizowanie slidera, oraz panelu tektowego
     def __handle_from_change(self):
         value_from = self.__slider_from.value()
         value_to = self.__slider_to.value()
@@ -87,8 +85,11 @@ class DoubleSlider(QWidget):
         if value_from > value_to:
             self.__slider_to.setValue(value_from )
 
+        # wywołanie metody wykresu zwracająca początek przedziału czasu dla wykresu
         self.__chart_panel.get_start(value_from)
+        # wywołanie metody panelu przycisku która została opisana w pliku list_of_countries.py
         self.list_of_buttons.changing_boundaries()
+
         return value_from
 
 
