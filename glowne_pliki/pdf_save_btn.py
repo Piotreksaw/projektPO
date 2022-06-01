@@ -10,6 +10,7 @@ class PdfSaveButton(QPushButton):
     def __init__(self, name, chart):
         super().__init__(name)
         self.__chart = chart
+
         self.__pdf_generator = PdfReportGenerator()
 
         self.clicked.connect(self.__save_btn_action)

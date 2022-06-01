@@ -9,6 +9,7 @@ class PdfReportGenerator:
         self.__author = "test1"
         self.__title = f"Proba_naglowka ({date.today()})"
 
+
     def create_and_save_report(self, img, filepath, pagesize=A4):
         pdf_template = self.__create_pdf_template(filepath, img, pagesize)
         pdf_template.setAuthor(self.__author)
@@ -19,11 +20,18 @@ class PdfReportGenerator:
 
         canvas = Canvas(filepath, pagesize=pagesize)
         canvas.setFont("Times-Roman", 30)
-        title = "proba_tytulu"
-        title_magic_offset, img_magic_offset = 100, 1000
+        title = "Chart of prices"
+        title_magic_offset, img_magic_offset = 100, 775
         title_x, title_y = A4[0] / 2, A4[1] - title_magic_offset
         img_x, img_y = 0, A4[1] - img_magic_offset
 
         canvas.drawCentredString(title_x, title_y, title)
         canvas.drawImage(img, img_x, img_y, width=A4[0], height=A4[1], preserveAspectRatio=True)
         return canvas
+
+    def get_list(self, list):
+        self.list = list
+        print(self.list)
+
+
+
