@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout
 from glowne_pliki.main.buttons import Export_and_something_buttons
 from tabs import Tabs
 from glowne_pliki.main.list_of_countries import ButtonsPanel
-from glowne_pliki.charts.chart import CreateChart
+from glowne_pliki.Charts.chart import CreateChart
 from glowne_pliki.main.doubleslider import SliderApp
 from glowne_pliki.file_loader.file_loader import FileLoader
 
