@@ -6,8 +6,8 @@ from list_of_countries import ButtonsPanel
 from projektPO.glowne_pliki.chart import CreateChart
 from Map.doubleslider import SliderApp
 from file_loader import FileLoader
-from file_reader import FileReader
 
+# klasa tworząca główne okno
 class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
@@ -19,9 +19,10 @@ class MainWindow(QWidget):
         self.setWindowTitle(name)
         self.__prepare_window()
 
+    # metoda tworząca obiekty do dodania do obszaru
     def __prepare_window(self):
 
-        self.__name = "program czasem działający"
+        self.__name = "Wybierz plik do wczytania"
         self.__fileloader = FileLoader(self.__name)
         self.__chart = CreateChart()
         self.__filepath = self.__fileloader.maybe_selected_file
@@ -29,9 +30,10 @@ class MainWindow(QWidget):
         self.__button_panel = ButtonsPanel(self.__chart, self.__filepath)
         self.__slider = SliderApp(self.__chart, self.__filepath, self.__button_panel)
         self.__tabs = Tabs(self.__chart)
-
+        # wywołanie metody dodającej widgety
         self.__adding_widgets()
 
+    # metoda służąca do dodania widgetów do obszaru
     def __adding_widgets(self):
 
         main_layout = QGridLayout()
@@ -44,7 +46,7 @@ class MainWindow(QWidget):
         self.setLayout(main_layout)
         self.show()
 
-
+# metoda wywołująca główne okno, miłe puszczenie oczka do programistów C
 def main():
     app = QApplication([])
     main_window = MainWindow()

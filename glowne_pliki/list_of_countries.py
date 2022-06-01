@@ -133,6 +133,7 @@ class ButtonsPanel(QGroupBox):
         self.__chart_panel.remove_plot()
         # iteracja służąca do ponownego dodania wykresów dla państw kliniętych
         for btn in self.__buttons:
+            # sprawdzenie statusu przycisku kliniętego
             if btn.get_status() == 1:
                 btn.update_chart_backup()
 
