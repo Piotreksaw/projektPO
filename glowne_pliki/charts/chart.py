@@ -25,7 +25,7 @@ class CreateChart(FigureCanvasQTAgg):
         img_data.seek(seek_offset)
         return img_data
 
-    # funkcja służąca do dodania danych do wykresu
+    # funkcja służąca do dodania danych do wykresu, wywołane w przycisku kraju
     def add_data_for_chart(self, name, price, dates, color):
         self.__dates = dates
         self.__price = price
@@ -44,7 +44,7 @@ class CreateChart(FigureCanvasQTAgg):
         self.xx = dates[self.__start:self.__end]
 
         self.new_x_axis = dates[self.__start:self.__end:2]
-        self.yy = price[self.__start:self.__end:1]
+        self.yy = price[self.__start:self.__end]
 
         self.__axes.plot(self.xx, self.yy, color, label=name)
         self.__axes.set_xticks(self.new_x_axis)
@@ -62,10 +62,9 @@ class CreateChart(FigureCanvasQTAgg):
     def set_chart(self):
         if self.__axes is None:
             self.__axes = self.__fig.add_subplot(111)
-            # self.__axes = self.__fig.axes[0]
             self.__axes.set_title("Wykres cen energii elektrycznej")
 
-    # poniższe funkcje zwracają nam początek i koniec
+    # poniższe funkcje zwracają nam początek i koniec, wywoływane w sliderze
     def get_start(self, start):
         self.__start = start
 

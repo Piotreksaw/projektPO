@@ -14,7 +14,7 @@ class AddingButton(QPushButton):
         self.country_name = country_name
         self.__chart_panel = chart_panel
         self.__status = 0
-        self.buttons_list = buttons_list
+        self.__buttons_list = buttons_list
         self.__file = FileReader(filepath)
         self.__country = Country(country_name, self.__file)
 
@@ -37,7 +37,7 @@ class AddingButton(QPushButton):
         elif self.__status == 1:
             self.__create_and_add_icon_to_btn()
             self.__status = 0
-            self.buttons_list.removing_plot()
+            self.__buttons_list.removing_plot()
 
     # metoda służącą do udpatowania wykresu, mianowicie ona dostaje listę przycisków które są kliknięte i
     # dodaje dla nich wykres
